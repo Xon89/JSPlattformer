@@ -8,8 +8,8 @@ var canvas = document.getElementById("canvas"),
     player = {
       x : width/2,
       y : height - 5,
-      width : 5,
-      height : 5,
+      width : 50,
+      height : 70,
       speed: 3,
       velX: 0,
       velY: 0,
@@ -61,11 +61,18 @@ function update(){
         player.jumping = false;
     }
 
-  ctx.clearRect(0,0,width,height);
-  ctx.fillStyle = "red";
-  ctx.fillRect(player.x, player.y, player.width, player.height);
+	var bgimg = new Image();
+	bgimg.onload = function () {
+		ctx.drawImage(bgimg, 0, 0, 800, 600);
+	}
+	bgimg.src = "bg.jpg";
 
-  requestAnimationFrame(update);
+	var tankimg = new Image();
+	tankimg.onload = function () {
+		ctx.drawImage(tankimg, player.x, player.y, player.width, player.height);
+	}
+	tankimg.src = "tank.jpg";
+ 	requestAnimationFrame(update);
 }
 
 document.body.addEventListener("keydown", function(e) {
