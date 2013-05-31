@@ -4,6 +4,7 @@ playarea_canvas = document.getElementById('playarea');
 playarea = playarea_canvas.getContext('2d');
 
 var gamefield = new Array();
+var tank = new Array();
 
 function initialize()
 {
@@ -12,6 +13,9 @@ function initialize()
 	gamefield['player_margin'] = 10;
 	gamefield['foreground'] = "#FFFFFF";
 	gamefield['background'] = "#CCCCCC";
+	
+	tank['x'] = 50;
+	tank['y'] = 500; 
 }
 
 function rendergamefield()
@@ -30,11 +34,33 @@ function rendergamefield()
 	}
 	bgimg.src = "bg.jpg";
 	
+	//draw tank
+	var tankimg = new Image();
+	tankimg.onload = function () {
+		playarea.drawImage(tankimg, tank['x'], tank['y'], 70, 50);
+	}
+	tankimg.src = "tank.jpg";
+	
+	document.onkeydown = checkKeyDown;
+	document.onkeyup = checkKeyUp;
 }
 
 function runthegame()
 {
 	rendergamefield();
+}
+
+function checkKeyDown(e) {
+    if(e.keyCode == 37)
+    	tank['x'] = tank['x'] - 5;
+    if(e.keyCode == 39)
+    	tank['x'] = tank['x'] + 5;
+
+}
+
+function checkKeyUp(e) {
+	if(e.keyCode == 37){}
+	if(e.keyCode == 39){}
 }
 
 initialize();
