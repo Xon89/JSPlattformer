@@ -1,67 +1,81 @@
-//by Kevin Baumgarten & Tobias Winkels-Herding
+var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+window.requestAnimationFrame = requestAnimationFrame;
 
-playarea_canvas = document.getElementById('playarea');
-playarea = playarea_canvas.getContext('2d');
+var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d"),
+    width = 800,
+    height = 600,
+    player = {
+      x : width/2,
+      y : height - 5,
+      width : 5,
+      height : 5,
+      speed: 3,
+      velX: 0,
+      velY: 0,
+      jumping: false
+    },
+    keys = [],
+    friction = 0.8,
+    gravity = 0.3;
 
-var gamefield = new Array();
-var tank = new Array();
+canvas.width = width;
+canvas.height = height;
 
-function initialize()
-{
-	gamefield['width'] = 800;
-	gamefield['height'] = 600;
-	gamefield['player_margin'] = 10;
-	gamefield['foreground'] = "#FFFFFF";
-	gamefield['background'] = "#CCCCCC";
-	
-	tank['x'] = 50;
-	tank['y'] = 500; 
+function update(){
+    if (keys[32]) {
+      //JUMP
+      if(!player.jumping){
+       player.jumping = true;
+       player.velY = -player.speed*2;
+      }
+    }
+    if (keys[39]) {
+        // MOVE RIGHT
+        if (player.velX < player.speed) {
+            player.velX++;
+        }
+    }
+    if (keys[37]) {
+        // MOV LEFT
+        if (player.velX > -player.speed) {
+            player.velX--;
+        }
+    }
+
+    player.velX *= friction;
+
+    player.velY += gravity;
+
+    player.x += player.velX;
+    player.y += player.velY;
+
+    if (player.x >= width-player.width) {
+        player.x = width-player.width;
+    } else if (player.x <= 0) {
+        player.x = 0;
+    }
+
+    if(player.y >= height-player.height){
+        player.y = height - player.height;
+        player.jumping = false;
+    }
+
+  ctx.clearRect(0,0,width,height);
+  ctx.fillStyle = "red";
+  ctx.fillRect(player.x, player.y, player.width, player.height);
+
+  requestAnimationFrame(update);
 }
 
-function rendergamefield()
-{
-	
-	playarea.beginPath();
-	playarea.clearRect(0,0,gamefield['width'],gamefield['height']);
-	playarea.fillStyle = gamefield['background'];
-	playarea.stroke();
-	playarea.closePath();
-	
-	//draw background image
-	var bgimg = new Image();
-	bgimg.onload = function () {
-		playarea.drawImage(bgimg, 0, 0, 800, 600);
-	}
-	bgimg.src = "bg.jpg";
-	
-	//draw tank
-	var tankimg = new Image();
-	tankimg.onload = function () {
-		playarea.drawImage(tankimg, tank['x'], tank['y'], 70, 50);
-	}
-	tankimg.src = "tank.jpg";
-	
-	document.onkeydown = checkKeyDown;
-	document.onkeyup = checkKeyUp;
-}
+document.body.addEventListener("keydown", function(e) {
+    keys[e.keyCode] = true;
+});
 
-function runthegame()
-{
-	rendergamefield();
-}
+document.body.addEventListener("keyup", function(e) {
+    keys[e.keyCode] = false;
+});
 
-function checkKeyDown(e) {
-    if(e.keyCode == 37)
-    	tank['x'] = tank['x'] - 5;
-    if(e.keyCode == 39)
-    	tank['x'] = tank['x'] + 5;
-
-}
-
-function checkKeyUp(e) {
-	if(e.keyCode == 37){}
-	if(e.keyCode == 39){}
-}
-
-initialize();
-var game = setInterval(runthegame, 10);
+window.addEventListener("load",function(){
+    update();
+});
