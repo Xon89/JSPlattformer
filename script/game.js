@@ -17,10 +17,19 @@ var canvas = document.getElementById("canvas"),
     },
     keys = [],
     friction = 0.8,
+    shotspeed = 10,
+    shot1go = null,
+    shot2go = null,
+    shot3go = null,
+    shot4go = null,
+    stopshoot = false,
     gravity = 0.3;
 
 canvas.width = width;
 canvas.height = height;
+var mouse = utils.captureMouse(canvas);
+var planeposx = 800;
+
 
 function update(){
     if (keys[32]) {
@@ -30,13 +39,13 @@ function update(){
        player.velY = -player.speed*2;
       }
     }
-    if (keys[39]) {
+    if (keys[39] || keys[68]) {
         // MOVE RIGHT
         if (player.velX < player.speed) {
             player.velX++;
         }
     }
-    if (keys[37]) {
+    if (keys[37] || keys[65]) {
         // MOV LEFT
         if (player.velX > -player.speed) {
             player.velX--;
@@ -60,19 +69,38 @@ function update(){
         player.y = height - player.height;
         player.jumping = false;
     }
-
+    
 	var bgimg = new Image();
 	bgimg.onload = function () {
 		ctx.drawImage(bgimg, 0, 0, 800, 600);
 	}
-	bgimg.src = "bg.jpg";
+	bgimg.src = "img/bg.jpg";
 
 	var tankimg = new Image();
 	tankimg.onload = function () {
 		ctx.drawImage(tankimg, player.x, player.y, player.width, player.height);
 	}
-	tankimg.src = "tank.jpg";
+	tankimg.src = "img/tank.jpg";
+	
+	enemyPlane();
+	
+	shoot();
+ 	
  	requestAnimationFrame(update);
+}
+
+function enemyPlane(){
+	if(planeposx>-150) {
+		var planeimg = new Image();
+		planeimg.onload = function () {
+			ctx.drawImage(planeimg, planeposx, 20, 150, 120);
+		}
+		planeimg.src = "img/plane.png";
+		
+		planeposx = planeposx - 5;
+	}
+	else
+		planeposx = 800;
 }
 
 document.body.addEventListener("keydown", function(e) {
@@ -82,6 +110,21 @@ document.body.addEventListener("keydown", function(e) {
 document.body.addEventListener("keyup", function(e) {
     keys[e.keyCode] = false;
 });
+
+canvas.addEventListener("mousedown", function(e) {
+	if(!stopshoot) {
+		if(!shot1go || !shot2go || !shot3go || !shot4go)
+			jBeep('sound/shot.wav');
+		if(shot1go && shot2go && shot3go) 
+			shot4init();
+		if(shot1go && shot2go && !shot3go)
+			shot3init();
+		if(shot1go && !shot2go)
+			shot2init();
+		if(!shot1go)
+			shot1init();
+	}
+}, false);
 
 window.addEventListener("load",function(){
     update();
