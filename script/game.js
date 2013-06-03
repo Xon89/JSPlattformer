@@ -8,8 +8,8 @@ var canvas = document.getElementById("canvas"),
     player = {
       x : width/2,
       y : height - 5,
-      width : 50,
-      height : 70,
+      width : 60,
+      height : 40,
       speed: 3,
       velX: 0,
       velY: 0,
@@ -80,8 +80,12 @@ function update(){
 	tankimg.onload = function () {
 		ctx.drawImage(tankimg, player.x, player.y, player.width, player.height);
 	}
-	tankimg.src = "img/tank.jpg";
-	
+	var turretimg = new Image();
+	turretimg.onload = function() {
+			ctx.drawimage(turretimg, player.x-10, player.y, player.width, player.height);
+	}
+	tankimg.src = "img/tankbody.png";
+	turretimg.src ="img/Turret1.png"
 	enemyPlane();
 	
 	shoot();
