@@ -1,4 +1,4 @@
-var cosi = 0,
+var cosi = 0, 
 	sine = 0; //needed to fix bug in startscreen
  
 function inputplayer(){
@@ -8,7 +8,7 @@ function inputplayer(){
        player.jumping = true;
        player.velY = -player.speed*2;
       }
-    }
+    }   	
     if (keys[39] || keys[68]) {
         // MOVE RIGHT
         if (player.velX < player.speed) {
