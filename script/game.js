@@ -7,20 +7,7 @@ function update(){
 
 	drawBoxesandColDetect();
 	drawTank();
-	turret.x = player.x + 30;
-	turret.y = player.y + 15;
-	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
-
-	
-
-	
-	var turretimg = new Image();
-	turretimg.onload = function() {
-			drawTurret(turretimg,turret.x,turret.y,37,16,turret.rotation);
-	}
-	turretimg.src ="img/Turret1.png";
-
-
+	drawTurret();
 	enemyPlane();
 	shoot();
  	
@@ -64,45 +51,6 @@ function enemyPlane(){
 		planeposx = 800;
 }
 
-function drawTank() {
-	if( (drawTankmov == "stand") && !player.jumping) {
-		var tankstandimg = new Image();
-		tankstandimg.onload = function () {
-			ctx.drawImage(tankstandimg, player.x, player.y, player.width, player.height);
-		}
-		tankstandimg.src = "img/Tankbody.png";
-	} else if( (drawTankmov == "left") && !player.jumping) {
-		var tankleftimg = new Image();
-		tankleftimg.onload = function () {
-			ctx.drawImage(tankleftimg, player.x, player.y, player.width, player.height);
-		}
-		tankleftimg.src = "img/Tankleft.png";
-	} else if( (drawTankmov == "right") && !player.jumping) {
-		var tankrightimg = new Image();
-		tankrightimg.onload = function () {
-			ctx.drawImage(tankrightimg, player.x, player.y, player.width, player.height);
-		}
-		tankrightimg.src = "img/Tankright.png";
-	} else if( (drawTankmov == "stand") && player.jumping){
-		var tankupimg = new Image();
-		tankupimg.onload = function () {
-			ctx.drawImage(tankupimg, player.x, player.y, player.width, player.height);
-		}
-		tankupimg.src = "img/Tankup.png";
-	} else if( (drawTankmov == "left") && player.jumping){
-		var tankupleftimg = new Image();
-		tankupleftimg.onload = function () {
-			ctx.drawImage(tankupleftimg, player.x, player.y, player.width, player.height);
-		}
-		tankupleftimg.src = "img/Tankupleft.png";
-	} else if( (drawTankmov == "right") && player.jumping){
-		var tankuprightimg = new Image();
-		tankuprightimg.onload = function () {
-			ctx.drawImage(tankuprightimg, player.x, player.y, player.width, player.height);
-		}
-		tankuprightimg.src = "img/Tankupright.png";
-	}
-}
 
 document.body.addEventListener("keydown", function(e) {
     keys[e.keyCode] = true;
@@ -142,7 +90,7 @@ window.addEventListener("load",function(){
     update();
 });
 
-function drawTurret(img,x,y,width,height,rad){
+function drawTurretsub(img,x,y,width,height,rad){
 	ctx.save();
 	
     ctx.translate(x,y);
