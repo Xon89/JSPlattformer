@@ -183,7 +183,7 @@ boxes.push({
     y: 10,
     width: 80,
     height: 80
-});a
+});
 boxes.push({
     x: 170,
     y: 50,
