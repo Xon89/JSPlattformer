@@ -26,6 +26,8 @@ var canvas = document.getElementById("canvas"),
     gravity = 0.3,
 	bg1posx = 0
 	bg2posx = width;
+	bg3posx = 0;
+	bg4posx = width;
     drawTankmov = "stand";
     var turret = new Segment(100,20);
 canvas.width = width;
@@ -43,7 +45,7 @@ function startscreen() {
 }
 
 function background(){
-		var bg1img = new Image();
+	var bg1img = new Image();
 	bg1img.onload = function () {
 		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
 	}
@@ -53,7 +55,19 @@ function background(){
 	bg2img.onload = function () {
 		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
 	}
-	bg2img.src = "img/bg3.png";
+	bg2img.src = "img/bg2.png";
+	
+	var bg3img = new Image();
+	bg3img.onload = function () {
+		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
+	}
+	bg3img.src = "img/bg3.png";
+	
+	var bg4img = new Image();
+	bg4img.onload = function () {
+		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
+	}
+	bg4img.src = "img/bg3.png";
 
 }
 function drawPlayer(){

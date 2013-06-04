@@ -24,6 +24,8 @@ function scrolling() {
     if(drawTankmov == "right" && (player.x == (width/3)*2)) {
 		bg1posx = bg1posx - 3;
 		bg2posx = bg2posx - 3;
+		bg3posx = bg3posx - 5;
+		bg4posx = bg4posx - 5;
 		
 		for (var i = 0; i < boxes.length; i++) {
     		boxes[i].x = boxes[i].x - 5;
@@ -37,6 +39,10 @@ function scrolling() {
 		bg1posx = width;
 	if(bg2posx <= -width)
 		bg2posx = width;
+	if(bg3posx <= -width)
+		bg3posx = width;
+	if(bg4posx <- -width)
+		bg4posx = width;
 }
 
 function colCheck(shapeA, shapeB) {
