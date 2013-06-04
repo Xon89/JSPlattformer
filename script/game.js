@@ -23,13 +23,17 @@ var canvas = document.getElementById("canvas"),
     shot3go = null,
     shot4go = null,
     stopshoot = false,
-    gravity = 0.3;
+    gravity = 0.3,
+	bg1posx = 0
+	bg2posx = width;
 
 canvas.width = width;
 canvas.height = height;
 var mouse = utils.captureMouse(canvas);
 var planeposx = 800;
 drawTankmov = "stand";
+
+var turret = new Segment(100,20);
 
 
 function update(){
@@ -60,38 +64,66 @@ function update(){
     player.x += player.velX;
     player.y += player.velY;
 
-    if (player.x >= width-player.width) {
-        player.x = width-player.width;
-    } else if (player.x <= 0) {
-        player.x = 0;
-    }
+	collision();
+    
+	var bg1img = new Image();
+	bg1img.onload = function () {
+		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
+	}
+	bg1img.src = "img/bg.jpg";
+	
+	var bg2img = new Image();
+	bg2img.onload = function () {
+		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
+	}
+	bg2img.src = "img/bg.jpg";
+
+
+	
+	drawBoxesandColDetect();
+	drawTank();
+	turret.x = player.x + 20;
+	turret.y = player.y + 10;
+	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
+
+	
+
+	
+	var turretimg = new Image();
+	turretimg.onload = function() {
+			drawTurret(turretimg,turret.x,turret.y,37,16,turret.rotation);
+	}
+	turretimg.src ="img/Turret1.png";
+
+
+	enemyPlane();
+	shoot();
+ 	
+	
+	if(drawTankmov == "right" && (player.x == (width/3)*2)) {
+		bg1posx = bg1posx - 3;
+		bg2posx = bg2posx - 3;
+	}
+	
+	if(bg1posx <= -width)
+		bg1posx = width;
+	if(bg2posx <= -width)
+		bg2posx = width;
+	
+ 	requestAnimationFrame(update);
+}
+
+function collision() {
+	if (player.x<0) {
+		player.x = 0;
+	} else if (player.x>(width/3)*2) {
+		player.x = (width/3)*2;
+	}	
 
     if(player.y >= height-player.height){
         player.y = height - player.height;
         player.jumping = false;
     }
-    
-	var bgimg = new Image();
-	bgimg.onload = function () {
-		ctx.drawImage(bgimg, 0, 0, 800, 600);
-	}
-	bgimg.src = "img/bg.jpg";
-
-	drawTank();
-	
-	var turretimg = new Image();
-	turretimg.onload = function() {
-					
-			ctx.drawImage(turretimg, player.x+20, player.y+10, 37, 16);
-	}
-	
-	turretimg.src ="img/Turret1.png";
-	
-	enemyPlane();
-	
-	shoot();
- 	
- 	requestAnimationFrame(update);
 }
 
 function enemyPlane(){
@@ -184,3 +216,26 @@ canvas.addEventListener("mousedown", function(e) {
 window.addEventListener("load",function(){
     update();
 });
+
+function drawTurret(img,x,y,width,height,rad){
+    ctx.translate(x + width / 2, y + height / 2);
+    ctx.rotate(rad);
+    ctx.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
+    ctx.rotate(rad * ( -1 ) );
+    ctx.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
+}
+
+function drawBoxesandColDetect(){
+//draw boxes and Fill, also call collision detection
+	var img = new Image();
+	img.src="img/steel.JPG";
+	var pat=ctx.createPattern(img,"repeat");
+	ctx.fillStyle=pat;
+	ctx.beginPath();
+	
+	for (var i = 0; i < boxes.length; i++) {
+    ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
+	        var dir = colCheck(player, boxes[i]);
+	}
+	ctx.fill();
+}
