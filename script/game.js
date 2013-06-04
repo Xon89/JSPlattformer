@@ -11,9 +11,9 @@ function update(){
 		drawBoxes();
 		scrolling();
 		collision();
-		drawTank();
-		drawTurret();
-		enemyPlane();
+		drawPlayer();
+
+		drawEnemy();
 		shoot();
  	}
  	

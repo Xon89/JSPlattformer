@@ -56,9 +56,14 @@ function background(){
 	bg2img.src = "img/bg.jpg";
 
 }
-
-
-function drawTurret(){
+function drawPlayer(){
+		drawTankPlayer();
+		drawTurretPlayer();
+}	
+function drawEnemy(){
+	enemyPlane();
+}
+function drawTurretPlayer(){
 	turret.x = player.x + 30;
 	turret.y = player.y + 16;
 	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
@@ -72,7 +77,8 @@ function drawTurret(){
 	}
 	turretimg.src ="img/Turret1.png";
 }
-function drawTank() {
+
+function drawTankPlayer() {
 	if( (drawTankmov == "stand") && !player.jumping) {
 		var tankstandimg = new Image();
 		tankstandimg.onload = function () {
