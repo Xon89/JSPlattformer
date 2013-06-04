@@ -82,8 +82,8 @@ function update(){
 	
 	drawBoxesandColDetect();
 	drawTank();
-	turret.x = player.x + 20;
-	turret.y = player.y + 10;
+	turret.x = player.x + 30;
+	turret.y = player.y + 15;
 	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
 
 	
@@ -218,11 +218,13 @@ window.addEventListener("load",function(){
 });
 
 function drawTurret(img,x,y,width,height,rad){
-    ctx.translate(x + width / 2, y + height / 2);
+	ctx.save();
+	
+    ctx.translate(x,y);
     ctx.rotate(rad);
-    ctx.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height);
-    ctx.rotate(rad * ( -1 ) );
-    ctx.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
+    ctx.drawImage(img,-8, -8,width,height);
+
+	ctx.restore();
 }
 
 function drawBoxesandColDetect(){
