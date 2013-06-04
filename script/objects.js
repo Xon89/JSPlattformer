@@ -32,6 +32,7 @@ canvas.width = width;
 canvas.height = height;
 var mouse = utils.captureMouse(canvas);
 var planeposx = 800;
+var planeposy = 35;
 
 function startscreen() {
 	var startimg = new Image();
@@ -111,16 +112,30 @@ function drawTank() {
 	}
 }
 function enemyPlane(){
-	if(planeposx>-150) {
+	if(planeposx>-1000) {
 		var planeimg = new Image();
 		planeimg.onload = function () {
-			ctx.drawImage(planeimg, planeposx, 20, 150, 120);
+			ctx.drawImage(planeimg, planeposx, planeposy, 53, 33);
 		}
-		planeimg.src = "img/plane.png";
+		planeimg.src = "img/Planebody.png";
 		
 		planeposx = planeposx - 5;
-		} else
+		
+		planeTurX = planeposx + 12;
+		planeTurY = planeposy + 17;
+		planeTurRot = Math.atan2 (turret.y - planeTurY, turret.x - planeTurX);
+		var planeTurImg = new Image();
+		planeTurImg.onload = function() {
+			ctx.save();
+		    ctx.translate(planeTurX,planeTurY);
+		    ctx.rotate(planeTurRot);
+		    ctx.drawImage(planeTurImg,-8, -8,37,16);
+			ctx.restore();
+		}
+		planeTurImg.src ="img/Turret2.png";
+	} else
 		planeposx = 800;
+		
 }
 
 function drawBoxes(){
