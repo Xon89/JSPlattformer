@@ -22,6 +22,15 @@ function scrolling() {
         player.y = height - player.height;
         player.jumping = false;
     }
+    if(drawTankmov == "right" && (player.x == (width/3)*2)) {
+	bg1posx = bg1posx - 3;
+	bg2posx = bg2posx - 3;
+	}
+	
+	if(bg1posx <= -width)
+		bg1posx = width;
+	if(bg2posx <= -width)
+		bg2posx = width;
 }
 
 function colCheck(shapeA, shapeB) {
