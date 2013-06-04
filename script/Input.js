@@ -1,5 +1,7 @@
-  
- function inputplayer(){
+var cosi = 0,
+	sine = 0; //needed to fix bug in startscreen
+ 
+function inputplayer(){
     if (keys[32]) {
       //JUMP
       if(!player.jumping){
@@ -30,17 +32,22 @@ document.body.addEventListener("keydown", function(e) {
 
 document.body.addEventListener("keyup", function(e) {
     if(keys[37] || keys[65] || keys[39] || keys[68])
-    	tankinmovement = true;
-    keys[e.keyCode] = false;
+    	tankinmovement = true;   
+    	 
+    if(e.keyCode != 13) 
+    	keys[e.keyCode] = false;
+    
     if((!keys[37] && !keys[65] ) && (!keys[39] && !keys[68]))
     	tankinmovement = false;
+    	
     if(!tankinmovement)
     	drawTankmov = "stand";
+    	
     tankinmovement = null;
 });
 
 canvas.addEventListener("mousedown", function(e) {
-	if(!stopshoot) {
+	if(!stopshoot && keys[13]) {
 		if(!shot1go || !shot2go || !shot3go || !shot4go)
 			jBeep('sound/shot.wav');
 		if(shot1go && shot2go && shot3go) 

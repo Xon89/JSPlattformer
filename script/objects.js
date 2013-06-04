@@ -33,6 +33,13 @@ canvas.height = height;
 var mouse = utils.captureMouse(canvas);
 var planeposx = 800;
 
+function startscreen() {
+	var startimg = new Image();
+	startimg.onload = function () {
+		ctx.drawImage(startimg, 0, 0, 800, 600);
+	}
+	startimg.src = "img/start.png";
+}
 
 function background(){
 		var bg1img = new Image();
@@ -51,7 +58,7 @@ function background(){
 
 
 function drawTurret(){
-		turret.x = player.x + 30;
+	turret.x = player.x + 30;
 	turret.y = player.y + 16;
 	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
 	var turretimg = new Image();
@@ -115,6 +122,7 @@ function enemyPlane(){
 		} else
 		planeposx = 800;
 }
+
 function drawBoxes(){
 //draw boxes and Fill
 	var img = new Image();
