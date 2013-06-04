@@ -5,7 +5,6 @@ function movement(){
     player.y += player.velY;
 }
 function collision(){
-	
 		for (var i = 0; i < boxes.length; i++) {
 	        var dir = colCheck(player, boxes[i]);
 	}
@@ -23,8 +22,15 @@ function scrolling() {
         player.jumping = false;
     }
     if(drawTankmov == "right" && (player.x == (width/3)*2)) {
-	bg1posx = bg1posx - 3;
-	bg2posx = bg2posx - 3;
+		bg1posx = bg1posx - 3;
+		bg2posx = bg2posx - 3;
+		
+		for (var i = 0; i < boxes.length; i++) {
+    		boxes[i].x = boxes[i].x - 5;
+		}
+		
+		ctx.fill();
+
 	}
 	
 	if(bg1posx <= -width)
