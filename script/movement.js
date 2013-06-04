@@ -8,6 +8,8 @@ function collision(){
 		for (var i = 0; i < boxes.length; i++) {
 	        var dir = colCheck(player, boxes[i]);
 	}
+	            if (dir == "b")
+            {player.jumping=false;}
 	
 }
 function scrolling() {
