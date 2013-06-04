@@ -118,7 +118,7 @@ function enemyPlane(){
 function drawBoxes(){
 //draw boxes and Fill
 	var img = new Image();
-	img.src="img/Tankbody.png";
+	img.src="img/box.png";
 	var pat=ctx.createPattern(img,"repeat");
 	ctx.fillStyle=pat;
 	ctx.beginPath();
