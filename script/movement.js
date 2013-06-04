@@ -11,6 +11,19 @@ function collision(){
 	}
 	
 }
+function scrolling() {
+	if (player.x<0) {
+		player.x = 0;
+	} else if (player.x>(width/3)*2) {
+		player.x = (width/3)*2;
+	}	
+
+    if(player.y >= height-player.height){
+        player.y = height - player.height;
+        player.jumping = false;
+    }
+}
+
 function colCheck(shapeA, shapeB) {
     // get the vectors to check against
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),

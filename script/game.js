@@ -2,11 +2,11 @@
 function update(){
 	inputplayer();
 	movement();
-	collision();
-	background();
 
+	background();
 	drawBoxes();
-	collision2();
+	scrolling();
+	collision();
 	drawTank();
 	drawTurret();
 	enemyPlane();
@@ -26,18 +26,6 @@ function update(){
  	requestAnimationFrame(update);
 }
 
-function collision2() {
-	if (player.x<0) {
-		player.x = 0;
-	} else if (player.x>(width/3)*2) {
-		player.x = (width/3)*2;
-	}	
-
-    if(player.y >= height-player.height){
-        player.y = height - player.height;
-        player.jumping = false;
-    }
-}
 
 
 
@@ -46,18 +34,10 @@ window.addEventListener("load",function(){
     update();
 });
 
-function drawTurretsub(img,x,y,width,height,rad){
-	ctx.save();
-	
-    ctx.translate(x,y);
-    ctx.rotate(rad);
-    ctx.drawImage(img,-8, -8,width,height);
 
-	ctx.restore();
-}
 
 function drawBoxes(){
-//draw boxes and Fill, also call collision detection
+//draw boxes and Fill
 	var img = new Image();
 	img.src="img/Tankbody.png";
 	var pat=ctx.createPattern(img,"repeat");
