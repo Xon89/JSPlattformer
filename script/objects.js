@@ -1,3 +1,55 @@
+var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+window.requestAnimationFrame = requestAnimationFrame;
+
+var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d"),
+    width = 800,
+    height = 600,
+    player = {
+      x : width/2,
+      y : height - 5,
+      width : 60,
+      height : 40,
+      speed: 3,
+      velX: 0,
+      velY: 0,
+      jumping: false
+    },
+    keys = [],
+    friction = 0.8,
+    shotspeed = 10,
+    shot1go = null,
+    shot2go = null,
+    shot3go = null,
+    shot4go = null,
+    stopshoot = false,
+    gravity = 0.3,
+	bg1posx = 0
+	bg2posx = width;
+
+canvas.width = width;
+canvas.height = height;
+var mouse = utils.captureMouse(canvas);
+var planeposx = 800;
+drawTankmov = "stand";
+
+function background(){
+		var bg1img = new Image();
+	bg1img.onload = function () {
+		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
+	}
+	bg1img.src = "img/bg.jpg";
+	
+	var bg2img = new Image();
+	bg2img.onload = function () {
+		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
+	}
+	bg2img.src = "img/bg.jpg";
+
+}
+
+var turret = new Segment(100,20);
+
 var boxes = [];
     
 boxes.push({
@@ -43,35 +95,3 @@ boxes.push({
     width: 40,
     height: 40
 });
-
-function colCheck(shapeA, shapeB) {
-    // get the vectors to check against
-    var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
-        // add the half widths and half heights of the objects
-        hWidths = (shapeA.width / 2) + (shapeB.width / 2),
-        hHeights = (shapeA.height / 2) + (shapeB.height / 2),
-        colDir = null;
- 
-    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
-    if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {         // figures out on which side we are colliding (top, bottom, left, or right)         
-    var oX = hWidths - Math.abs(vX),             oY = hHeights - Math.abs(vY);         if (oX >= oY) {
-            if (vY > 0) {
-                colDir = "t";
-                shapeA.y += oY;
-            } else {
-                colDir = "b";
-                shapeA.y -= oY;
-            }
-        } else {
-            if (vX > 0) {
-                colDir = "l";
-                shapeA.x += oX;
-            } else {
-                colDir = "r";
-                shapeA.x -= oX;
-            }
-        }
-    }
-    return colDir;
-}
