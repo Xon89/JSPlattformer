@@ -81,7 +81,8 @@ function update(){
 	
 	var turretimg = new Image();
 	turretimg.onload = function() {
-			ctx.drawimage(turretimg, player.x-10, player.y, player.width, player.height);
+					
+			ctx.drawImage(turretimg, player.x+20, player.y+10, 37, 16);
 	}
 	
 	turretimg.src ="img/Turret1.png";
