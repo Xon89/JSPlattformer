@@ -14,7 +14,7 @@ function update(){
         }
     }
     if (keys[37] || keys[65]) {
-        // MOV LEFT
+        // MOVE LEFT
         if (player.velX > -player.speed) {
             player.velX--;
         }
