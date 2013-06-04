@@ -228,7 +228,7 @@ function drawTurret(img,x,y,width,height,rad){
 function drawBoxesandColDetect(){
 //draw boxes and Fill, also call collision detection
 	var img = new Image();
-	img.src="img/steel.JPG";
+	img.src="img/Tankbody.png";
 	var pat=ctx.createPattern(img,"repeat");
 	ctx.fillStyle=pat;
 	ctx.beginPath();
