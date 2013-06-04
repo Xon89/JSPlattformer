@@ -47,13 +47,13 @@ function background(){
 	bg1img.onload = function () {
 		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
 	}
-	bg1img.src = "img/bg.jpg";
+	bg1img.src = "img/bg3.png";
 	
 	var bg2img = new Image();
 	bg2img.onload = function () {
 		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
 	}
-	bg2img.src = "img/bg.jpg";
+	bg2img.src = "img/bg3.png";
 
 }
 function drawPlayer(){

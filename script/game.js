@@ -12,7 +12,6 @@ function update(){
 		scrolling();
 		collision();
 		drawPlayer();
-
 		drawEnemy();
 		shoot();
  	}
