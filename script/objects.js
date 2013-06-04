@@ -48,6 +48,8 @@ function background(){
 	bg2img.src = "img/bg.jpg";
 
 }
+
+
 function drawTurret(){
 		turret.x = player.x + 30;
 	turret.y = player.y + 15;
@@ -101,7 +103,18 @@ function drawTank() {
 		tankuprightimg.src = "img/Tankupright.png";
 	}
 }
-
+function enemyPlane(){
+	if(planeposx>-150) {
+		var planeimg = new Image();
+		planeimg.onload = function () {
+			ctx.drawImage(planeimg, planeposx, 20, 150, 120);
+		}
+		planeimg.src = "img/plane.png";
+		
+		planeposx = planeposx - 5;
+		} else
+		planeposx = 800;
+}
 
 var boxes = [];
     

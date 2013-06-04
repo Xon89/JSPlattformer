@@ -5,7 +5,8 @@ function update(){
 	collision();
 	background();
 
-	drawBoxesandColDetect();
+	drawBoxes();
+	collision2();
 	drawTank();
 	drawTurret();
 	enemyPlane();
@@ -25,7 +26,7 @@ function update(){
  	requestAnimationFrame(update);
 }
 
-function collision() {
+function collision2() {
 	if (player.x<0) {
 		player.x = 0;
 	} else if (player.x>(width/3)*2) {
@@ -38,53 +39,8 @@ function collision() {
     }
 }
 
-function enemyPlane(){
-	if(planeposx>-150) {
-		var planeimg = new Image();
-		planeimg.onload = function () {
-			ctx.drawImage(planeimg, planeposx, 20, 150, 120);
-		}
-		planeimg.src = "img/plane.png";
-		
-		planeposx = planeposx - 5;
-		} else
-		planeposx = 800;
-}
 
 
-document.body.addEventListener("keydown", function(e) {
-    keys[e.keyCode] = true;
-    if(keys[37] || keys[65])
-    	drawTankmov = "left";
-    if(keys[39] || keys[68])
-    	drawTankmov = "right";
-});
-
-document.body.addEventListener("keyup", function(e) {
-    if(keys[37] || keys[65] || keys[39] || keys[68])
-    	tankinmovement = true;
-    keys[e.keyCode] = false;
-    if((!keys[37] && !keys[65] ) && (!keys[39] && !keys[68]))
-    	tankinmovement = false;
-    if(!tankinmovement)
-    	drawTankmov = "stand";
-    tankinmovement = null;
-});
-
-canvas.addEventListener("mousedown", function(e) {
-	if(!stopshoot) {
-		if(!shot1go || !shot2go || !shot3go || !shot4go)
-			jBeep('sound/shot.wav');
-		if(shot1go && shot2go && shot3go) 
-			shot4init();
-		if(shot1go && shot2go && !shot3go)
-			shot3init();
-		if(shot1go && !shot2go)
-			shot2init();
-		if(!shot1go)
-			shot1init();
-	}
-}, false);
 
 window.addEventListener("load",function(){
     update();
@@ -100,7 +56,7 @@ function drawTurretsub(img,x,y,width,height,rad){
 	ctx.restore();
 }
 
-function drawBoxesandColDetect(){
+function drawBoxes(){
 //draw boxes and Fill, also call collision detection
 	var img = new Image();
 	img.src="img/Tankbody.png";
@@ -110,39 +66,7 @@ function drawBoxesandColDetect(){
 	
 	for (var i = 0; i < boxes.length; i++) {
     ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-	        var dir = colCheck(player, boxes[i]);
 	}
 	ctx.fill();
 }
 
-function colCheck(shapeA, shapeB) {
-    // get the vectors to check against
-    var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
-        // add the half widths and half heights of the objects
-        hWidths = (shapeA.width / 2) + (shapeB.width / 2),
-        hHeights = (shapeA.height / 2) + (shapeB.height / 2),
-        colDir = null;
- 
-    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
-    if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {         // figures out on which side we are colliding (top, bottom, left, or right)         
-    var oX = hWidths - Math.abs(vX),             oY = hHeights - Math.abs(vY);         if (oX >= oY) {
-            if (vY > 0) {
-                colDir = "t";
-                shapeA.y += oY;
-            } else {
-                colDir = "b";
-                shapeA.y -= oY;
-            }
-        } else {
-            if (vX > 0) {
-                colDir = "l";
-                shapeA.x += oX;
-            } else {
-                colDir = "r";
-                shapeA.x -= oX;
-            }
-        }
-    }
-    return colDir;
-}
