@@ -71,7 +71,7 @@ function shot1() {
  		shotimg.onload = function () {
  			ctx.drawImage(shotimg, shotposx, shotposy, 8, 8);
  		}
- 		shotimg.src = "img/shot.jpg";
+ 		shotimg.src = "img/shot.png";
  	}
 }
 
@@ -88,7 +88,7 @@ function shot2() {
  		shot2img.onload = function () {
  			ctx.drawImage(shot2img, shot2posx, shot2posy, 8, 8);
  		}
- 		shot2img.src = "img/shot.jpg";
+ 		shot2img.src = "img/shot.png";
  	}
 }
 
@@ -105,7 +105,7 @@ function shot3() {
  		shot3img.onload = function () {
  			ctx.drawImage(shot3img, shot3posx, shot3posy, 8, 8);
  		}
- 		shot3img.src = "img/shot.jpg";
+ 		shot3img.src = "img/shot.png";
  	}
 }
 
@@ -122,6 +122,6 @@ function shot4() {
  		shot4img.onload = function () {
  			ctx.drawImage(shot4img, shot4posx, shot4posy, 8, 8);
  		}
- 		shot4img.src = "img/shot.jpg";
+ 		shot4img.src = "img/shot.png";
  	}
 }
