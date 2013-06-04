@@ -1,18 +1,10 @@
 
 function update(){
 	inputplayer();
-    player.velX *= friction;
-
-    player.velY += gravity;
-
-    player.x += player.velX;
-    player.y += player.velY;
-
+	movement();
 	collision();
-    
 	background();
 
-	
 	drawBoxesandColDetect();
 	drawTank();
 	turret.x = player.x + 30;
