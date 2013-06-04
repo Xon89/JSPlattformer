@@ -52,7 +52,7 @@ function background(){
 
 function drawTurret(){
 		turret.x = player.x + 30;
-	turret.y = player.y + 15;
+	turret.y = player.y + 16;
 	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
 	var turretimg = new Image();
 	turretimg.onload = function() {
