@@ -1,4 +1,8 @@
 function shoot() {
+	shootangle = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
+	sine = Math.sin(shootangle) * 20;
+	cosi = Math.cos(shootangle) * 20;
+		
 	shot1();
 	shot2();
 	shot3();
@@ -17,10 +21,10 @@ function shot1init() {
 	shot1go = true;
 	shotaimx = mouse.x,
 	shotaimy = mouse.y,
-	shotstartx = player.x,
-	shotstarty = player.y,
-	shotposx = player.x,
-	shotposy = player.y;
+	shotstartx = (turret.x-4) + cosi,
+	shotstarty = (turret.y-4) + sine,
+	shotposx = (turret.x-4) + cosi,
+	shotposy = (turret.y-4) + sine;
 	shot1go = true;
 }
 
@@ -28,30 +32,30 @@ function shot2init() {
 	shot2go = true;
 	shot2aimx = mouse.x,
 	shot2aimy = mouse.y,
-	shot2startx = player.x,
-	shot2starty = player.y,
-	shot2posx = player.x,
-	shot2posy = player.y;	
+	shot2startx = (turret.x-4) + cosi,
+	shot2starty = (turret.y-4) + sine,
+	shot2posx = (turret.x-4) + cosi,
+	shot2posy = (turret.y-4) + sine;	
 }
 
 function shot3init() {
 	shot3go = true;
 	shot3aimx = mouse.x,
 	shot3aimy = mouse.y,
-	shot3startx = player.x,
-	shot3starty = player.y,
-	shot3posx = player.x,
-	shot3posy = player.y;	
+	shot3startx = (turret.x-4) + cosi,
+	shot3starty = (turret.y-4) + sine,
+	shot3posx = (turret.x-4) + cosi,
+	shot3posy = (turret.y-4) + sine;	
 }
 
 function shot4init() {
 	shot4go = true;
 	shot4aimx = mouse.x,
 	shot4aimy = mouse.y,
-	shot4startx = player.x,
-	shot4starty = player.y,
-	shot4posx = player.x,
-	shot4posy = player.y;	
+	shot4startx = (turret.x-4) + cosi,
+	shot4starty = (turret.y-4) + sine,
+	shot4posx = (turret.x-4) + cosi,
+	shot4posy = (turret.y-4) + sine;	
 }
 
 function shot1() {
