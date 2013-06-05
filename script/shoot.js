@@ -17,6 +17,41 @@ function shoot() {
 	}
 }
 
+function shootplayerinit(){
+		shootangle = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
+		sine = Math.sin(playershots.shootangle) * 20;
+		cosi = Math.cos(playershots.shootangle) * 20;
+	    aimx= mouse.x;
+	    aimy= mouse.y;
+	    startx = (turret.x-4) + playershots.cosi,
+		starty = (turret.y-4) + playershots.sine,
+	playershots.push({
+		posx : (turret.x-4) + playershots.cosi,
+		posy : (turret.y-4) + playershots.sine,
+		angle : Math.atan2(aimy - starty, aimx - startx),
+		go : true,
+		img : null,
+	});
+}
+function playershot() {
+	for (var i = 0; i < playershots.length; i++) {
+   		if(playershots[i].go==true) {
+	    	shotmovx = Math.cos(playershots[i].angle) * shotspeed;
+	    	shotmovy = Math.sin(playershots[i].angle) * shotspeed;
+	 		
+	 		playershots[i].posx += shotmovx;
+	   		playershots[i].posy += shotmovy;
+	   		shotposx=playershots[i].posx;
+	   		shotposy=playershots[i].posy
+	 		playershots[i].img = new Image();
+ 			var shotimg = new Image();
+ 			shotimg.onload = function () {
+ 				ctx.drawImage(shotimg, shotposx, shotposy, 8, 8);
+ 			}
+ 			shotimg.src = "img/shot.png";
+ 		}
+	}
+}
 function shot1init() {
 	shot1go = true;
 	shotaimx = mouse.x,

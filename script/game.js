@@ -13,7 +13,7 @@ function update(){
 		collision();
 		drawPlayer();
 		drawEnemy();
-		shoot();
+		playershot();
  	}
  	
  	requestAnimationFrame(update);

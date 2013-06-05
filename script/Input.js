@@ -48,7 +48,7 @@ document.body.addEventListener("keyup", function(e) {
 });
 
 canvas.addEventListener("mousedown", function(e) {
-	if(!stopshoot && keys[13]) {
+	/*if(!stopshoot && keys[13]) {
 		if(!shot1go || !shot2go || !shot3go || !shot4go)
 			jBeep('sound/shot.wav');
 		if(shot1go && shot2go && shot3go) 
@@ -59,5 +59,7 @@ canvas.addEventListener("mousedown", function(e) {
 			shot2init();
 		if(!shot1go)
 			shot1init();
-	}
+	}*/
+	shootplayerinit();
+	jBeep('sound/shot.wav');
 }, false);

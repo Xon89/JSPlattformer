@@ -29,9 +29,11 @@ var canvas = document.getElementById("canvas"),
 	bg2posx = width;
 	bg3posx = 0;
 	bg4posx = width;
+	
 
     drawTankmov = "stand";
     var turret = new Segment(100,20);
+    var playershots=[];
 canvas.width = width;
 canvas.height = height;
 var mouse = utils.captureMouse(canvas);
@@ -177,7 +179,12 @@ function drawBoxes(){
 	ctx.fill();
 }
 var boxes = [];
-    
+boxes.push({
+    x: 0,
+    y: height - 2,
+    width: width,
+    height: 50
+});    
 boxes.push({
     x: 0,
     y: height-10,
