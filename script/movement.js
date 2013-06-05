@@ -5,12 +5,26 @@ function movement(){
     player.y += player.velY;
 }
 function collision(){
-		for (var i = 0; i < boxes.length; i++) {
-	        var dir = colCheck(player, boxes[i]);
+	player.grounded = false;
+
+	for (var i = 0; i < boxes.length; i++) {
+	     var dir = colCheck(player, boxes[i]);
+	        
+	    if (dir === "l" || dir === "r") {
+	        player.velX = 0;
+	        player.jumping = false;
+       	} else if (dir === "b") {
+	        player.grounded = true;
+	        player.jumping = false;
+       	} else if (dir === "t")
+           	player.velY *= -1;
+     
+		if(player.grounded){
+      		player.velY = 0;
+    	}	
 	}
-	            if (dir == "b")
-            {player.jumping=false;}
 	
+	        
 }
 function scrolling() {
 	if (player.x<0) {
@@ -65,6 +79,7 @@ function colCheck(shapeA, shapeB) {
             } else {
                 colDir = "b";
                 shapeA.y -= oY;
+                player.y = shapeA.y;
             }
         } else {
             if (vX > 0) {

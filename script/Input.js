@@ -4,9 +4,10 @@ var cosi = 0,
 function inputplayer(){
     if (keys[32]) {
       //JUMP
-      if(!player.jumping){
+      if(!player.jumping && player.grounded){
        player.jumping = true;
        player.velY = -player.speed*2;
+       player.grounded = false;
       }
     }   	
     if (keys[39] || keys[68]) {

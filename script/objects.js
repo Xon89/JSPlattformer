@@ -14,6 +14,7 @@ var canvas = document.getElementById("canvas"),
       speed: 3,
       velX: 0,
       velY: 0,
+      grounded: false,
       jumping: false
     },
     friction = 0.8,
@@ -24,10 +25,11 @@ var canvas = document.getElementById("canvas"),
     shot4go = null,
     stopshoot = false,
     gravity = 0.3,
-	bg1posx = 0
+	bg1posx = 0,
 	bg2posx = width;
 	bg3posx = 0;
 	bg4posx = width;
+
     drawTankmov = "stand";
     var turret = new Segment(100,20);
 canvas.width = width;
