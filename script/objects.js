@@ -140,9 +140,16 @@ function enemyPlane(){
 		planeimg.src = "img/Planebody.png";
 		
 		planeposx = planeposx - 5;
-		
-		planeTurX = planeposx + 12;
-		planeTurY = planeposy + 17;
+		drawTurret(planeposx+12 , planeposy+17)
+
+	} else
+		planeposx = 800;
+}
+function drawTurret(parentx, parenty){
+	
+
+		planeTurX = parentx;
+		planeTurY = parenty;
 		planeTurRot = Math.atan2 (turret.y - planeTurY, turret.x - planeTurX);
 		var planeTurImg = new Image();
 		planeTurImg.onload = function() {
@@ -153,11 +160,7 @@ function enemyPlane(){
 			ctx.restore();
 		}
 		planeTurImg.src ="img/Turret2.png";
-	} else
-		planeposx = 800;
-		
 }
-
 function drawBoxes(){
 //draw boxes and Fill
 	var img = new Image();
@@ -189,7 +192,7 @@ boxes.push({
     x: width - 10,
     y: 0,
     width: 50,
-    height: height
+    height: 10
 });
  
 boxes.push({
