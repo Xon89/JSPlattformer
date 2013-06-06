@@ -14,6 +14,7 @@ playershots.length=0;
       speed: 3,
       velX: 0,
       velY: 0,
+      nodead: 1,
       grounded: false,
       active: true,
       jumping: false

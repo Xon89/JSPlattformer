@@ -33,8 +33,10 @@ function playershot() {
 					playershots[i].go=false;
 				}	
 				for (var j = 0; j < enemyTowers.length; j++){
-					if (enemyTowers[j].active ==1){
-							colCheckHit(playershots[i], enemyTowers[j])
+					if (enemyTowers[j].nodead ==1){
+						if (enemyTowers[j].active ==1){
+								colCheckHit(playershots[i], enemyTowers[j])
+						}
 					}
 				}
 
@@ -95,7 +97,8 @@ function colCheckHit(shapeA, shapeB) {
     // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
     if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {         // figures out on which side we are colliding (top, bottom, left, or right)         
    
-                shapeB.active = 0;
+                shapeB.nodead = 0;
+                shapeB.active =0;
  				jBeep('sound/hit.wav');
     }
     

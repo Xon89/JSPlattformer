@@ -3,7 +3,7 @@ function update(){
 	
 	startscreen();
 	if(keys[13]) {
-		if(player.active) {
+		if(player.nodead) {
 			canvas.width=canvas.width;
 			canvas.width=width;
 			movement();

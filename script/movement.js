@@ -47,7 +47,7 @@ function scrolling() {
 		for (var i = 0; i < enemyTowers.length; i++) {
 				if (enemyTowers[i].nodead==1){
     				enemyTowers[i].x = enemyTowers[i].x - 5;
-    				if (enemyTowers[i].x==-5){
+    				if (enemyTowers[i].x<=-5){
     					enemyTowers.nodead=0;
     				}
     			}
