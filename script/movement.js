@@ -26,6 +26,7 @@ function collision(){
 	
 	        
 }
+
 function scrolling() {
 	if (player.x<0) {
 		player.x = 0;
