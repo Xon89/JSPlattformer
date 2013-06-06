@@ -29,6 +29,10 @@ enemyplanes ={
 		timer : 500,
 		shoottimer : 100,
 	}
+Score={
+	time:0,
+	points:0,
+}
 enemyTowers.push({
   		x: 200,
 		y: 400,

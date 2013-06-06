@@ -37,10 +37,10 @@ function scrolling() {
         player.jumping = false;
     }
     if(drawTankmov == "right" && (player.x == scrollingpoint) ) {
-		bg1posx = bg1posx - 3;
-		bg2posx = bg2posx - 3;
-		bg3posx = bg3posx - 5;
-		bg4posx = bg4posx - 5;
+		bg1posx = bg1posx - 2;
+		bg2posx = bg2posx - 2;
+		bg3posx = bg3posx - 1;
+		bg4posx = bg4posx - 1;
 		for (var i = 1; i < boxes.length; i++) {
     			boxes[i].x = boxes[i].x - 5;
 		}

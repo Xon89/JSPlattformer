@@ -7,7 +7,7 @@ function update(){
 			canvas.width=canvas.width;
 			canvas.width=width;
 			movement();
-		
+			
 			background();
 			drawBoxes();
 			scrolling();
@@ -16,6 +16,7 @@ function update(){
 			drawEnemy();
 			playershot();
 			enemyshot();
+			drawScore();
 		} else {
 			keys[13] = false; 
 			restart();
