@@ -22,7 +22,6 @@ function update(){
 			restart();
 
 			
-			offset = 0;
 		}
  	}
  	
