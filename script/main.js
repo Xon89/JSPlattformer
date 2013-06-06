@@ -184,7 +184,7 @@ function enemyPlane(){
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
 			if (enemyTowers[i].nodead==1){
-				if (enemyTowers[i].x<=1000){
+				if (enemyTowers[i].x<=800){
 					enemyTowers[i].active=1;
 				}
 				if(enemyTowers[i].active == 1) {	
