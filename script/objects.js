@@ -39,7 +39,16 @@ enemyTowers.push({
 		shoottimer : 100,
 		nodead: 1,
 });
-
+enemyTowers.push({
+  		x: 2000,
+		y: 400,
+		width: 20,
+		height: 60,
+		active : 0,
+		timer : 80,
+		shoottimer : 100,
+		nodead: 1,
+});
 
 boxes.push({
     x: 0,
