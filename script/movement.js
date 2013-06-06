@@ -49,6 +49,8 @@ function scrolling() {
 			enemyshots[i].x = enemyshots[i].x -5;
 		}
 		
+		offset = offset + 5;
+		
 		ctx.fill();
 
 	}
