@@ -46,6 +46,7 @@ var canvas = document.getElementById("canvas"),
     canvas.width = 800;
 	canvas.height = 600;
 	var mouse = utils.captureMouse(canvas);
+	var offset = 0;
 
 
 function startscreen() {
