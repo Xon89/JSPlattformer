@@ -30,7 +30,7 @@ enemyplanes ={
 		shoottimer : 100,
 	}
 enemyTowers.push({
-  		x: 050,
+  		x: 200,
 		y: 400,
 		width: 20,
 		height: 60,

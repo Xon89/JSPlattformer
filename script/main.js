@@ -172,19 +172,20 @@ function enemyPlane(){
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
 			if (enemyTowers[i].nodead==1){
-				if (enemyTowers[i].x<=600){
+				if (enemyTowers[i].x<=1000){
 					enemyTowers[i].active=1;
 				}
 				if(enemyTowers[i].active == 1) {	
 					var Towerimg = new Image();
 					if (enemyTowers[i].timer < 40){
 					Towerimg.src ="img/Tower1.png";
+					enemyTowers[i].timer--;
 					}
 					else{
 						Towerimg.src="img/Tower2.png"
 						enemyTowers[i].timer=80;
 					}
-					ctx.drawImage(Towerimg, enemyTowers[i].x, enemyTowers[i].y);
+					ctx.drawImage	(Towerimg, enemyTowers[i].x, enemyTowers[i].y);
 					drawTurret(enemyTowers[i].x+10,enemyTowers[i].y+9)
 					enemyTowers[i].shoottimer--;
 					if(enemyTowers[i].shoottimer == 0) {
