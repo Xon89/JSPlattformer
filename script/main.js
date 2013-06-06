@@ -171,21 +171,26 @@ function enemyPlane(){
 }
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
-			if(enemyTowers[i].active == 1) {	
-				var Towerimg = new Image();
-				if (enemyTowers[i].timer < 40){
-				Towerimg.src ="img/Tower1.png";
+			if (enemyTowers[i].nodead==1){
+				if (enemyTowers[i].x<=600){
+					enemyTowers[i].active=1;
 				}
-				else{
-					Towerimg.src="img/Tower2.png"
-					enemyTowers[i].timer=80;
-				}
-				ctx.drawImage(Towerimg, enemyTowers[i].x, enemyTowers[i].y);
-				drawTurret(enemyTowers[i].x+10,enemyTowers[i].y+9)
-				enemyTowers[i].shoottimer--;
-				if(enemyTowers[i].shoottimer == 0) {
-					shootenemyinit(enemyTowers[i].x+14,enemyTowers[i].y+5);
-					enemyTowers[i].shoottimer = 100;
+				if(enemyTowers[i].active == 1) {	
+					var Towerimg = new Image();
+					if (enemyTowers[i].timer < 40){
+					Towerimg.src ="img/Tower1.png";
+					}
+					else{
+						Towerimg.src="img/Tower2.png"
+						enemyTowers[i].timer=80;
+					}
+					ctx.drawImage(Towerimg, enemyTowers[i].x, enemyTowers[i].y);
+					drawTurret(enemyTowers[i].x+10,enemyTowers[i].y+9)
+					enemyTowers[i].shoottimer--;
+					if(enemyTowers[i].shoottimer == 0) {
+						shootenemyinit(enemyTowers[i].x+14,enemyTowers[i].y+5);
+						enemyTowers[i].shoottimer = 100;
+					}
 				}
 			}
 		}

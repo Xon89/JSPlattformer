@@ -44,10 +44,15 @@ function scrolling() {
 		for (var i = 1; i < boxes.length; i++) {
     			boxes[i].x = boxes[i].x - 5;
 		}
-		for (var i = 1; i < enemyTowers.length; i++) {
-    			enemyTowers[i].x = enemyTowers[i].x - 5;
+		for (var i = 0; i < enemyTowers.length; i++) {
+				if (enemyTowers[i].nodead==1){
+    				enemyTowers[i].x = enemyTowers[i].x - 5;
+    				if (enemyTowers[i].x==-5){
+    					enemyTowers.nodead=0;
+    				}
+    			}
 		}
-		for (i = 1; i < enemyshots.length; i++) {
+		for (i = 0; i < enemyshots.length; i++) {
 			enemyshots[i].x = enemyshots[i].x -5;
 		}
 		

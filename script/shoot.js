@@ -61,7 +61,7 @@ function shootenemyinit( xstart ,  ystart){
 
 	
 }
-function enemyshot(x, y) {
+function enemyshot() {
 	for (var i = 0; i < enemyshots.length; i++) {
    			if(enemyshots[i].go==true) {
 	    		shotmovx = Math.cos(enemyshots[i].angle) * shotspeed;

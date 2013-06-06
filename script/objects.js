@@ -33,9 +33,10 @@ enemyTowers.push({
 		y: 400,
 		width: 20,
 		height: 60,
-		active : 1,
+		active : 0,
 		timer : 80,
 		shoottimer : 100,
+		nodead: 1,
 });
 
 
