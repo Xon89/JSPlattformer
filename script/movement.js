@@ -28,7 +28,7 @@ function collision(){
 	if (dir === "l" || dir === "r") {
 	        player.velX = 0;
 	        player.jumping = false;
-	        alert('Winner');
+	        alert('Congratulations! You won the game. You scored ' + Score.points + ' points in ' + Math.round(Score.time/60) + ' seconds.');
 	        restart();
        	}
 	
