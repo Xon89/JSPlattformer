@@ -4,8 +4,10 @@ function shootplayerinit(){
 		sine = Math.sin(shootangle) * 20;
 		cosi = Math.cos(shootangle) * 20;
 		playershots.push({
-		posx : (turret.x-4) + cosi,
-		posy : (turret.y-4) + sine,
+		x : (turret.x-4) + cosi,
+		y : (turret.y-4) + sine,
+		width : 8,
+		height: 8,
 		angle : shootangle,
 		go : true,
 		destruction : 0,
@@ -18,11 +20,11 @@ function playershot() {
    			if(playershots[i].go==true) {
 	    		shotmovx = Math.cos(playershots[i].angle) * shotspeed;
 	    		shotmovy = Math.sin(playershots[i].angle) * shotspeed;
-		 		playershots[i].posx += shotmovx;
-		   		playershots[i].posy += shotmovy;
+		 		playershots[i].x += shotmovx;
+		   		playershots[i].y += shotmovy;
  			    var shotimg = new Image();
 			 	shotimg.src = "img/shot.png";
-				ctx.drawImage(shotimg, playershots[i].posx, playershots[i].posy, 8, 8);
+				ctx.drawImage(shotimg, playershots[i].x, playershots[i].y, playershots[i].width, playershots[i].height);
 				playershots[i].destruction++;
 				if (playershots[i].destruction == 600){
 					playershots[i].go=false;
@@ -32,14 +34,14 @@ function playershot() {
  	}
 	
 }
-function shootenemyinit( posxstart ,  posystart){
+function shootenemyinit( xstart ,  ystart){
 		jBeep('sound/shot.wav');	
-		shootangle= Math.atan2(turret.y - posystart, turret.x - posxstart ),
+		shootangle= Math.atan2(turret.y - ystart, turret.x - xstart ),
 		sine = Math.sin(shootangle) * 20;
 		cosi = Math.cos(shootangle) * 20;
 		enemyshots.push({
-			posx : (posxstart-4) + cosi,
-			posy : (posystart-4) + sine,
+			x : (xstart-4) + cosi,
+			y : (ystart-4) + sine,
 			angle : shootangle,
 			go : true,
 			destruction : 0,
@@ -48,16 +50,16 @@ function shootenemyinit( posxstart ,  posystart){
 
 	
 }
-function enemyshot(posx, posy) {
+function enemyshot(x, y) {
 	for (var i = 0; i < playershots.length; i++) {
    			if(enemyshots[i].go==true) {
 	    		shotmovx = Math.cos(enemyshots[i].angle) * shotspeed;
 	    		shotmovy = Math.sin(enemyshots[i].angle) * shotspeed;
-		 		enemyshots[i].posx += shotmovx;
-		   		enemyshots[i].posy += shotmovy;
+		 		enemyshots[i].x += shotmovx;
+		   		enemyshots[i].y += shotmovy;
  			    var shotimg = new Image();
 			 	shotimg.src = "img/enemyshot.png";
-				ctx.drawImage(shotimg, enemyshots[i].posx, enemyshots[i].posy, 8, 8);
+				ctx.drawImage(shotimg, enemyshots[i].x, enemyshots[i].y, playershots[i].width, playershots[i].height);
 				enemyshots[i].destruction++;
 				if (enemyshots[i].destruction == 600){
 					enemyshots[i].go=false;

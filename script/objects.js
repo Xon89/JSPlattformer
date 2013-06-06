@@ -35,8 +35,12 @@ var canvas = document.getElementById("canvas"),
 	enemyplanes ={
 		x: 800,
 		y: 35,
+		width: 53,
+		height: 33,
+		alive: true,
 		mov: -1,
 		active : 1,
+		timer : 500,
 	}
     canvas.width = 800;
 	canvas.height = 600;
@@ -54,19 +58,19 @@ function startscreen() {
 function background(){
 	var bg1img = new Image();
 	bg1img.src = "img/bg2.png";
-		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
+		ctx.drawImage(bg1img, bg1posx, 0, 801, 600);
 
 	var bg2img = new Image();
 		bg2img.src = "img/bg2.png";
-		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
+		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
 
 	var bg3img = new Image();
 	bg3img.src = "img/bg3.png";
-		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
+		ctx.drawImage(bg1img, bg1posx, 0, 801, 600);
 
 	var bg4img = new Image();
 	bg4img.src = "img/bg3.png";
-		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
+		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
 }
 
 function drawPlayer(){
@@ -129,37 +133,39 @@ function drawTankPlayer() {
 	}
 }
 function enemyPlane(){
-	timerplaneshots++;
-	if (enemyplanes.active==0){
-		
-		if (Math.random*100==80){
-			enemyplanes.active=1;
-			enemyplanes.x= 800;
-			enemyplanes.mov =-1;
+	if(enemyplanes.alive == true) {
+		timerplaneshots++;
+		if (enemyplanes.active==0){
+			
+			if (Math.random*100==80){
+				enemyplanes.active=1;
+				enemyplanes.x= 800;
+				enemyplanes.mov =-1;
+			}
 		}
-	}
-	if(enemyplanes.mov== -1){
-		enemyplanes.x=enemyplanes.x-5;
-		if (enemyplanes.x==0){
-			enemyplanes.mov= 1;
+		if(enemyplanes.mov== -1){
+			enemyplanes.x=enemyplanes.x-5;
+			if (enemyplanes.x==0){
+				enemyplanes.mov= 1;
+			}
+			var planeimg = new Image();
+			planeimg.src = "img/Planebody.png";
+			ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, enemyplanes.width, enemyplanes.height);
+			drawTurret(enemyplanes.x+13 , enemyplanes.y+16);
 		}
-		var planeimg = new Image();
-		planeimg.src = "img/Planebody.png";
-		ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, 53, 33);
-		drawTurret(enemyplanes.x+13 , enemyplanes.y+16);
-	}
-	else{
-		enemyplanes.x=enemyplanes.x+5;
-				if (enemyplanes.x==800){
-			enemyplanes.mov= -1;
-		}
-		var planeimg = new Image();
-		planeimg.src = "img/Planebodyflipped.png";
-		ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, 53, 33);
-		drawTurret(enemyplanes.x+40 , enemyplanes.y+16); 
-		if (timerplaneshots == 500){
-		timerplaneshots =0;
-		shootenemyinit(enemyplanes.x+40 , enemyplanes.y+16);
+		else{
+			enemyplanes.x=enemyplanes.x+5;
+					if (enemyplanes.x==800){
+				enemyplanes.mov= -1;
+			}
+			var planeimg = new Image();
+			planeimg.src = "img/Planebodyflipped.png";
+			ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, enemyplanes.width, enemyplanes.height);
+			drawTurret(enemyplanes.x+40 , enemyplanes.y+16); 
+			if (timerplaneshots == 500){
+			timerplaneshots =0;
+			shootenemyinit(enemyplanes.x+40 , enemyplanes.y+16);
+			}
 		}
 	}
 }
@@ -201,7 +207,7 @@ function drawBoxes(){
 var enemyTowers=[];
 enemyTowers.push({
     x:400,
-    y:300,
+    y:300
 });
 var boxes = [];
 boxes.push({
@@ -209,47 +215,54 @@ boxes.push({
     y: height - 2,
     width: width,
     height: 50
-});    
-boxes.push({
-    x: 0,
-    y: height-10,
-    width: 60,
-    height: 80
 });
-boxes.push({
-    x: 0,
-    y: height - 2,
-    width: width,
-    height: 50
-});
-boxes.push({
-    x: width - 10,
-    y: 0,
-    width: 50,
-    height: 10
-});
- 
-boxes.push({
-    x: 120,
-    y: 10,
-    width: 80,
-    height: 80
-});
-boxes.push({
-    x: 170,
-    y: 50,
-    width: 80,
-    height: 80
-});
-boxes.push({
-    x: 220,
-    y: 100,
-    width: 80,
-    height: 80
-});
+
+
 boxes.push({
     x: 600,
-    y: 550,
+    y: 560,
+    width: 400,
+    height: 40
+});
+
+boxes.push({
+    x: 755,
+    y: 530,
+    width: 80,
+    height: 40
+});
+
+boxes.push({
+    x: 1000,
+    y: 510,
+    width: 300,
+    height: 100
+});
+
+boxes.push({
+    x: 1330,
+    y: 560,
     width: 40,
     height: 40
+});
+
+boxes.push({
+    x: 1400,
+    y: 460,
+    width: 300,
+    height: 200
+});
+
+boxes.push({
+    x: 1700,
+    y: 510,
+    width: 40,
+    height: 160
+});
+
+boxes.push({
+    x: 1740,
+    y: 560,
+    width: 40,
+    height: 80
 });
