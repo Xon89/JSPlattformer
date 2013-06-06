@@ -61,5 +61,5 @@ canvas.addEventListener("mousedown", function(e) {
 			shot1init();
 	}*/
 	shootplayerinit();
-	jBeep('sound/shot.wav');
+
 }, false);

@@ -5,6 +5,8 @@ function update(){
 	startscreen();
 	
 	if(keys[13]) {
+		canvas.width=canvas.width;
+		canvas.width=width;
 		movement();
 	
 		background();
@@ -14,6 +16,7 @@ function update(){
 		drawPlayer();
 		drawEnemy();
 		playershot();
+
  	}
  	
  	requestAnimationFrame(update);
