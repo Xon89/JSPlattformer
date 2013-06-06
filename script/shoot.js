@@ -26,10 +26,20 @@ function playershot() {
 			 	shotimg.src = "img/shot.png";
 				ctx.drawImage(shotimg, playershots[i].x, playershots[i].y, playershots[i].width, playershots[i].height);
 				playershots[i].destruction++;
+				if (enemyplanes.active == 1){
+				colCheckHit(playershots[i], enemyplanes);
+				}
 				if (playershots[i].destruction == 600){
 					playershots[i].go=false;
 				}	
+				/*for (var i = 0; i < playershots.length; i++){
+					if (enemyTowers[i].active ==true){
+						colcheckEnemyhit(playershots[i], enemyTowers[i])
+					}
+				}*/
 
+					
+			
 	 		}
  	}
 	
@@ -65,8 +75,28 @@ function enemyshot(x, y) {
 				if (enemyshots[i].destruction == 600){
 					enemyshots[i].go=false;
 				}	
+				if (player.active == 1){
+				colCheckHit(enemyshots[i], player);
+				}
 
 	 		}
  	}
 	
+}
+function colCheckHit(shapeA, shapeB) {
+    // get the vectors to check against
+    var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
+        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
+        // add the half widths and half heights of the objects
+        hWidths = (shapeA.width / 2) + (shapeB.width / 2),
+        hHeights = (shapeA.height / 2) + (shapeB.height / 2);
+     
+ 
+    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
+    if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {         // figures out on which side we are colliding (top, bottom, left, or right)         
+   
+                shapeB.active = 0;
+ 				jBeep('sound/hit.wav');
+    }
+    
 }

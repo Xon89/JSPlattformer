@@ -5,7 +5,7 @@ function update(){
 	startscreen();
 	
 	if(keys[13]) {
-		if(player.alive) {
+		if(player.active) {
 			canvas.width=canvas.width;
 			canvas.width=width;
 			movement();
@@ -20,7 +20,7 @@ function update(){
 			enemyshot();
 		} else {
 			keys[13] = false; 
-			player.alive = true; 
+			player.active = 1; 
 			enemyshots = [];
 			playershots = [];
 			player.x = width/2;

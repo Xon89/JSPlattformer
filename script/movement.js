@@ -23,23 +23,6 @@ function collision(){
       		player.velY = 0;
     	}	
 	}
-	
-	if(enemyplanes.alive == true)
-		for (var i = 0; i < playershots.length; i++) {
-			var dir = colCheckEnemyHit(playershots[i], enemyplanes);
-		} else {
-			enemyplanes.timer--;
-			if(enemyplanes.timer == 0) {
-				enemyplanes.alive = true;
-				enemyplanes.timer = 500;
-				enemyplanes.x = 750;
-			}
-	}
-	
-	for (var i = 0; i < enemyshots.length; i++) {
-		var dir = colCheckPlayerHit(enemyshots[i], player)	
-	}
-	        
 }
 
 function scrolling() {
@@ -109,45 +92,7 @@ function colCheckBoxes(shapeA, shapeB) {
     return colDir;
 }
 
-function colCheckEnemyHit(shapeA, shapeB) {
-    // get the vectors to check against
-    var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
-        vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
-        // add the half widths and half heights of the objects
-        hWidths = (shapeA.width / 2) + (shapeB.width / 2),
-        hHeights = (shapeA.height / 2) + (shapeB.height / 2),
-        colDir = null;
- 
-    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
-    if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {         // figures out on which side we are colliding (top, bottom, left, or right)         
-    var oX = hWidths - Math.abs(vX),             oY = hHeights - Math.abs(vY);         if (oX >= oY) {
-            if (vY > 0) {
-                colDir = "t";
-                shapeA.y += oY;
-                enemyplanes.alive = false;
-                jBeep('sound/hit.wav');
-            } else {
-                colDir = "b";
-                shapeA.y -= oY;
-                enemyplanes.alive = false;
-                jBeep('sound/hit.wav');
-            }
-        } else {
-            if (vX > 0) {
-                colDir = "l";
-                shapeA.x += oX;
-                enemyplanes.alive = false;
-                jBeep('sound/hit.wav');
-            } else {
-                colDir = "r";
-                shapeA.x -= oX;
-                enemyplanes.alive = false;
-                jBeep('sound/hit.wav');
-            }
-        }
-    }
-    return colDir;
-}
+
 
 function colCheckPlayerHit(shapeA, shapeB) {
     // get the vectors to check against

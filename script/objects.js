@@ -16,7 +16,7 @@ var canvas = document.getElementById("canvas"),
       velX: 0,
       velY: 0,
       grounded: false,
-      alive: true,
+      active: true,
       jumping: false
     },
     friction = 0.8,
@@ -38,7 +38,6 @@ var canvas = document.getElementById("canvas"),
 		y: 35,
 		width: 53,
 		height: 33,
-		alive: true,
 		mov: -1,
 		active : 1,
 		timer : 500,
@@ -146,16 +145,9 @@ function drawTurret(parentx, parenty){
 
 }
 function enemyPlane(){
-	if(enemyplanes.alive == true) {
+	if(enemyplanes.active == 1) {
 		timerplaneshots++;
-		if (enemyplanes.active==0){
-			
-			if (Math.random*100==80){
-				enemyplanes.active=1;
-				enemyplanes.x= 800;
-				enemyplanes.mov =-1;
-			}
-		}
+		
 		if(enemyplanes.mov== -1){
 			enemyplanes.x=enemyplanes.x-5;
 			if (enemyplanes.x==0){
@@ -186,7 +178,14 @@ function enemyPlane(){
 			shootenemyinit(planeTurX,planeTurY);
 			enemyplanes.shoottimer = 100;
 		}
-		
+	}
+	else {
+			enemyplanes.timer--;
+			if(enemyplanes.timer == 0) {
+				enemyplanes.active = 1;
+				enemyplanes.timer = 500;
+				enemyplanes.x = 750;
+			}
 	}
 }
 function enemyTower(){
