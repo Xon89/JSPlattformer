@@ -5,6 +5,7 @@ var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     width = 800,
     height = 600,
+
     keys = [],
     player = {
       x : width/2,
@@ -19,30 +20,27 @@ var canvas = document.getElementById("canvas"),
     },
     friction = 0.8,
     shotspeed = 10,
-    shot1go = null,
-    shot2go = null,
-    shot3go = null,
-    shot4go = null,
-    stopshoot = false,
     gravity = 0.3,
 	bg1posx = 0,
 	bg2posx = width;
 	bg3posx = 0;
 	bg4posx = width;
 	planeactive=1;
-	timer=0;
-
+	scrolling =0;
     drawTankmov = "stand";
     var turret = new Segment(100,20);
     var playershots=[];
+    var enemyshots=[];
+    timerplaneshots =0;
 	enemyplanes ={
 		x: 800,
 		y: 35,
 		mov: -1,
+		active : 1,
 	}
-canvas.width = width;
-canvas.height = height;
-var mouse = utils.captureMouse(canvas);
+    canvas.width = 800;
+	canvas.height = 600;
+	var mouse = utils.captureMouse(canvas);
 
 
 function startscreen() {
@@ -58,26 +56,17 @@ function background(){
 	bg1img.src = "img/bg2.png";
 		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
 
-
-	
 	var bg2img = new Image();
 		bg2img.src = "img/bg2.png";
 		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
-	
 
-	
 	var bg3img = new Image();
 	bg3img.src = "img/bg3.png";
 		ctx.drawImage(bg1img, bg1posx, 0, 800, 600);
 
-
-	
 	var bg4img = new Image();
 	bg4img.src = "img/bg3.png";
 		ctx.drawImage(bg2img, bg2posx, 0, 800, 600);
-	
-
-
 }
 
 function drawPlayer(){
@@ -140,10 +129,13 @@ function drawTankPlayer() {
 	}
 }
 function enemyPlane(){
-	if (planeactive==0){
-		timer++;
-		if (timer==Math.random*10000){
-
+	timerplaneshots++;
+	if (enemyplanes.active==0){
+		
+		if (Math.random*100==80){
+			enemyplanes.active=1;
+			enemyplanes.x= 800;
+			enemyplanes.mov =-1;
 		}
 	}
 	if(enemyplanes.mov== -1){
@@ -165,6 +157,10 @@ function enemyPlane(){
 		planeimg.src = "img/Planebodyflipped.png";
 		ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, 53, 33);
 		drawTurret(enemyplanes.x+40 , enemyplanes.y+16); 
+		if (timerplaneshots == 300){
+		timerplaneshots =0;
+		shootenemyinit(enemyplanes.x+40 , enemyplanes.y+16);
+		}
 	}
 }
 function drawTurret(parentx, parenty){

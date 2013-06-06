@@ -43,7 +43,6 @@ function scrolling() {
 		bg2posx = bg2posx - 3;
 		bg3posx = bg3posx - 5;
 		bg4posx = bg4posx - 5;
-		
 		for (var i = 1; i < boxes.length; i++) {
     		boxes[i].x = boxes[i].x - 5;
 		}
