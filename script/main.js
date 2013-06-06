@@ -15,6 +15,7 @@ var canvas = document.getElementById("canvas"),
 	bg2posx = width;
 	bg3posx = 0;
 	bg4posx = width;
+	scrollingpoint = 450;
 	var boxes = [];
 	planeactive=1;
 	scrolling =0;

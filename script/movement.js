@@ -28,15 +28,15 @@ function collision(){
 function scrolling() {
 	if (player.x<0) {
 		player.x = 0;
-	} else if (player.x>(width/3)*2) {
-		player.x = (width/3)*2;
+	} else if (player.x>scrollingpoint) {
+		player.x = scrollingpoint;
 	}	
 
     if(player.y >= height-player.height){
         player.y = height - player.height;
         player.jumping = false;
     }
-    if(drawTankmov == "right" && (player.x == (width/3)*2)) {
+    if(drawTankmov == "right" && (player.x == scrollingpoint) ) {
 		bg1posx = bg1posx - 3;
 		bg2posx = bg2posx - 3;
 		bg3posx = bg3posx - 5;
