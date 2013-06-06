@@ -58,21 +58,14 @@ function startscreen() {
 }
 
 function background(){
+var bg2img = new Image();
+	bg2img.src = "img/bg3.png";
+		ctx.drawImage(bg2img, bg3posx, 0, 801, 600);
+		ctx.drawImage(bg2img, bg4posx, 0, 801, 600);
 	var bg1img = new Image();
 	bg1img.src = "img/bg2.png";
 		ctx.drawImage(bg1img, bg1posx, 0, 801, 600);
-
-	var bg2img = new Image();
-		bg2img.src = "img/bg2.png";
-		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
-
-	var bg3img = new Image();
-	bg3img.src = "img/bg3.png";
-		ctx.drawImage(bg1img, bg1posx, 0, 801, 600);
-
-	var bg4img = new Image();
-	bg4img.src = "img/bg3.png";
-		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
+		ctx.drawImage(bg1img, bg2posx, 0, 801, 600);
 }
 
 function drawPlayer(){
