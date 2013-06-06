@@ -7,7 +7,7 @@ function movement(){
 function collision(){
 	player.grounded = false;
 
-	for (var i = 0; i < boxes.length; i++) {
+	for (var i = 0; i < boxes.length-2; i++) {
 	     var dir = colCheckBoxes(player, boxes[i]);
 	        
 	    if (dir === "l" || dir === "r") {
@@ -23,6 +23,18 @@ function collision(){
       		player.velY = 0;
     	}	
 	}
+	
+	dir = colCheckBoxes(player, boxes[boxes.length-2]);
+	if (dir === "l" || dir === "r") {
+	        player.velX = 0;
+	        player.jumping = false;
+	        alert('Winner');
+	        restart();
+       	}
+	
+	
+	
+			
 }
 
 function scrolling() {

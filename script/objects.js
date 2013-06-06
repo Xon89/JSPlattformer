@@ -110,4 +110,18 @@ boxes.push({
     width: 40,
     height: 80
 });
+
+boxes.push({
+	x: 4000,
+	y: 0,
+	width: 40,
+	height: height
+});
+boxes.push({
+	x: 4000,
+	y: 0,
+	width: 40,
+	height: height
+});
+
 }
