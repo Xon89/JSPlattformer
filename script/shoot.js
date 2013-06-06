@@ -4,13 +4,13 @@ function shootplayerinit(){
 		sine = Math.sin(shootangle) * 20;
 		cosi = Math.cos(shootangle) * 20;
 		playershots.push({
-		x : (turret.x-4) + cosi,
-		y : (turret.y-4) + sine,
-		width : 8,
-		height: 8,
-		angle : shootangle,
-		go : true,
-		destruction : 0,
+			x : (turret.x-4) + cosi,
+			y : (turret.y-4) + sine,
+			width : 8,
+			height: 8,
+			angle : shootangle,
+			go : true,
+			destruction : 0,
 		})
 
 	
@@ -42,16 +42,17 @@ function shootenemyinit( xstart ,  ystart){
 		enemyshots.push({
 			x : (xstart-4) + cosi,
 			y : (ystart-4) + sine,
+			width : 8,
+			height: 8,
 			angle : shootangle,
 			go : true,
 			destruction : 0,
-	
 		})
 
 	
 }
 function enemyshot(x, y) {
-	for (var i = 0; i < playershots.length; i++) {
+	for (var i = 0; i < enemyshots.length; i++) {
    			if(enemyshots[i].go==true) {
 	    		shotmovx = Math.cos(enemyshots[i].angle) * shotspeed;
 	    		shotmovy = Math.sin(enemyshots[i].angle) * shotspeed;
@@ -59,7 +60,7 @@ function enemyshot(x, y) {
 		   		enemyshots[i].y += shotmovy;
  			    var shotimg = new Image();
 			 	shotimg.src = "img/enemyshot.png";
-				ctx.drawImage(shotimg, enemyshots[i].x, enemyshots[i].y, playershots[i].width, playershots[i].height);
+				ctx.drawImage(shotimg, enemyshots[i].x, enemyshots[i].y, enemyshots[i].width, enemyshots[i].height);
 				enemyshots[i].destruction++;
 				if (enemyshots[i].destruction == 600){
 					enemyshots[i].go=false;

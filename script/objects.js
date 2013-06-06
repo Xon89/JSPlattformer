@@ -16,6 +16,7 @@ var canvas = document.getElementById("canvas"),
       velX: 0,
       velY: 0,
       grounded: false,
+      alive: true,
       jumping: false
     },
     friction = 0.8,
@@ -41,6 +42,7 @@ var canvas = document.getElementById("canvas"),
 		mov: -1,
 		active : 1,
 		timer : 500,
+		shoottimer : 100,
 	}
     canvas.width = 800;
 	canvas.height = 600;
@@ -93,8 +95,6 @@ function drawTurretPlayer(){
     ctx.rotate(turret.rotation);
     ctx.drawImage(turretimg,-8, -8,37,16);
 	ctx.restore();
-
-
 }
 
 function drawTankPlayer() {
@@ -132,6 +132,19 @@ function drawTankPlayer() {
 
 	}
 }
+function drawTurret(parentx, parenty){
+		planeTurX = parentx;
+		planeTurY = parenty;
+		planeTurRot = Math.atan2 (turret.y - planeTurY, turret.x - planeTurX);
+		var planeTurImg = new Image();
+		planeTurImg.src ="img/Turret2.png";
+		ctx.save();
+		ctx.translate(planeTurX,planeTurY);
+		ctx.rotate(planeTurRot);
+		ctx.drawImage(planeTurImg,-8, -8,37,16);
+		ctx.restore();
+
+}
 function enemyPlane(){
 	if(enemyplanes.alive == true) {
 		timerplaneshots++;
@@ -167,20 +180,14 @@ function enemyPlane(){
 			shootenemyinit(enemyplanes.x+40 , enemyplanes.y+16);
 			}
 		}
+		
+		enemyplanes.shoottimer--;
+		if(enemyplanes.shoottimer == 0) {
+			shootenemyinit(planeTurX,planeTurY);
+			enemyplanes.shoottimer = 100;
+		}
+		
 	}
-}
-function drawTurret(parentx, parenty){
-		planeTurX = parentx;
-		planeTurY = parenty;
-		planeTurRot = Math.atan2 (turret.y - planeTurY, turret.x - planeTurX);
-		var planeTurImg = new Image();
-		planeTurImg.src ="img/Turret2.png";
-		ctx.save();
-		ctx.translate(planeTurX,planeTurY);
-		ctx.rotate(planeTurRot);
-		ctx.drawImage(planeTurImg,-8, -8,37,16);
-		ctx.restore();
-
 }
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
