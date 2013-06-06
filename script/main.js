@@ -61,8 +61,15 @@ function drawScore(){
   	ctx.fillText("Time:" +Math.round(Score.time/60)+"      Score:"+Score.points , 20, 15);
 }
 function drawPlayer(){
+		if (player.shotavail==0){
+		player.shotcd--;
+			if (player.shotcd==0){
+				player.shotavail=1;
+			}
+		}
 		drawTankPlayer();
 		drawTurretPlayer();
+
 }	
 function drawEnemy(){
 		enemyTower();

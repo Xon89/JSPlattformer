@@ -1,4 +1,5 @@
 function shootplayerinit(){
+		
 		jBeep('sound/shot.wav');	
 		shootangle= Math.atan2(mouse.y - turret.y, mouse.x - turret.x),
 		sine = Math.sin(shootangle) * 20;

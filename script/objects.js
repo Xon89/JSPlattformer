@@ -17,7 +17,9 @@ playershots.length=0;
       nodead: 1,
       grounded: false,
       active: true,
-      jumping: false
+      jumping: false,
+      shotcd: 50,
+      shotavail: 1,
     }
 enemyplanes ={
 		x: 800,
