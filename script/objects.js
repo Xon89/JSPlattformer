@@ -1,24 +1,23 @@
 
-function drawBoxes(){
-//draw boxes and Fill
-	var img = new Image();
-	img.src="img/box.png";
-	var pat=ctx.createPattern(img,"repeat");
-	ctx.fillStyle=pat;
-	ctx.beginPath();
-	
-	for (var i = 0; i < boxes.length; i++) {
-    ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-	}
-	ctx.fill();
-}
-var enemyTowers=[];
+
 
 function restart(){
 enemyTowers.length=0;
 boxes.length=0;
 enemyshots.length=0;
 playershots.length=0;
+    player = {
+      x : width/2,
+      y : height - 5,
+      width : 60,
+      height : 40,
+      speed: 3,
+      velX: 0,
+      velY: 0,
+      grounded: false,
+      active: true,
+      jumping: false
+    }
 enemyplanes ={
 		x: 800,
 		y: 35,

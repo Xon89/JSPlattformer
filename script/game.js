@@ -18,11 +18,6 @@ function update(){
 			enemyshot();
 		} else {
 			keys[13] = false; 
-			player.active = 1; 
-			enemyshots = [];
-			playershots = [];
-			player.x = width/2;
-			player.y = height - 5;
 			restart();
 
 			

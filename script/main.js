@@ -7,18 +7,7 @@ var canvas = document.getElementById("canvas"),
     height = 600,
 
     keys = [],
-    player = {
-      x : width/2,
-      y : height - 5,
-      width : 60,
-      height : 40,
-      speed: 3,
-      velX: 0,
-      velY: 0,
-      grounded: false,
-      active: true,
-      jumping: false
-    },
+
     friction = 0.8,
     shotspeed = 10,
     gravity = 0.3,
@@ -33,17 +22,8 @@ var canvas = document.getElementById("canvas"),
     var turret = new Segment(100,20);
     var playershots=[];
     var enemyshots=[];
+    var enemyTowers=[];
     timerplaneshots =0;
-	enemyplanes ={
-		x: 800,
-		y: 35,
-		width: 53,
-		height: 33,
-		mov: -1,
-		active : 1,
-		timer : 500,
-		shoottimer : 100,
-	}
     canvas.width = 800;
 	canvas.height = 600;
 	var mouse = utils.captureMouse(canvas);
