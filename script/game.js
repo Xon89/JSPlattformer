@@ -1,4 +1,3 @@
-
 function update(){
 	inputplayer();
 	
@@ -24,7 +23,14 @@ function update(){
 			enemyshots = [];
 			playershots = [];
 			player.x = width/2;
-			player.y = height - 5;}
+			player.y = height - 5;
+			
+			for (i = 1; i < boxes.length; i++) {
+			boxes[i].x = boxes[i].x + offset;
+			}
+
+			offset = 0;
+		}
  	}
  	
  	requestAnimationFrame(update);
