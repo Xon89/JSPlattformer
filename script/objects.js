@@ -26,6 +26,7 @@ var canvas = document.getElementById("canvas"),
 	bg2posx = width;
 	bg3posx = 0;
 	bg4posx = width;
+	
 	planeactive=1;
 	scrolling =0;
     drawTankmov = "stand";
@@ -47,7 +48,6 @@ var canvas = document.getElementById("canvas"),
 	canvas.height = 600;
 	var mouse = utils.captureMouse(canvas);
 	var offset = 0;
-
 
 function startscreen() {
 	var startimg = new Image();
@@ -80,7 +80,7 @@ function drawPlayer(){
 		drawTurretPlayer();
 }	
 function drawEnemy(){
-		
+		enemyTower();
 		enemyPlane();
 		
 }
@@ -133,15 +133,15 @@ function drawTankPlayer() {
 	}
 }
 function drawTurret(parentx, parenty){
-		planeTurX = parentx;
-		planeTurY = parenty;
-		planeTurRot = Math.atan2 (turret.y - planeTurY, turret.x - planeTurX);
-		var planeTurImg = new Image();
-		planeTurImg.src ="img/Turret2.png";
+		TurX = parentx;
+		TurY = parenty;
+		TurRot = Math.atan2 (turret.y - TurY, turret.x - TurX);
+		var TurImg = new Image();
+		TurImg.src ="img/Turret2.png";
 		ctx.save();
-		ctx.translate(planeTurX,planeTurY);
-		ctx.rotate(planeTurRot);
-		ctx.drawImage(planeTurImg,-8, -8,37,16);
+		ctx.translate(TurX,TurY);
+		ctx.rotate(TurRot);
+		ctx.drawImage(TurImg,-8, -8,37,16);
 		ctx.restore();
 
 }
@@ -176,7 +176,7 @@ function enemyPlane(){
 		
 		enemyplanes.shoottimer--;
 		if(enemyplanes.shoottimer == 0) {
-			shootenemyinit(planeTurX,planeTurY);
+			shootenemyinit(TurX,TurY);
 			enemyplanes.shoottimer = 100;
 		}
 	}
@@ -191,10 +191,23 @@ function enemyPlane(){
 }
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
-			var Towerimg = new Image();
-			Towerimg.src ="img/Tower1.png";
-			ctx.drawImage(Towerimg, enemyTowers.x, enemyTowers.y);
-			drawTurret(enemyTowers.x+14,enemyTowers.y+5)
+			if(enemyTowers[i].active == 1) {	
+				var Towerimg = new Image();
+				if (enemyTowers[i].timer < 40){
+				Towerimg.src ="img/Tower1.png";
+				}
+				else{
+					Towerimg.src="img/Tower2.png"
+					enemyTowers[i].timer=80;
+				}
+				ctx.drawImage(Towerimg, enemyTowers[i].x, enemyTowers[i].y);
+				drawTurret(enemyTowers[i].x+10,enemyTowers[i].y+9)
+				enemyTowers[i].shoottimer--;
+				if(enemyTowers[i].shoottimer == 0) {
+					shootenemyinit(enemyTowers[i].x+14,enemyTowers[i].y+5);
+					enemyTowers[i].shoottimer = 100;
+				}
+			}
 		}
 }
 
@@ -213,8 +226,13 @@ function drawBoxes(){
 }
 var enemyTowers=[];
 enemyTowers.push({
-    x:400,
-    y:300
+  		x: 300,
+		y: 400,
+		width: 20,
+		height: 60,
+		active : 1,
+		timer : 80,
+		shoottimer : 100,
 });
 var boxes = [];
 boxes.push({
