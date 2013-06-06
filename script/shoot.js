@@ -32,11 +32,11 @@ function playershot() {
 				if (playershots[i].destruction == 600){
 					playershots[i].go=false;
 				}	
-				/*for (var i = 0; i < playershots.length; i++){
-					if (enemyTowers[i].active ==true){
-						colcheckEnemyhit(playershots[i], enemyTowers[i])
+				for (var j = 0; j < enemyTowers.length; j++){
+					if (enemyTowers[j].active ==1){
+							colCheckHit(playershots[i], enemyTowers[j])
 					}
-				}*/
+				}
 
 					
 			

@@ -44,7 +44,9 @@ function scrolling() {
 		for (var i = 1; i < boxes.length; i++) {
     			boxes[i].x = boxes[i].x - 5;
 		}
-		
+		for (var i = 1; i < enemyTowers.length; i++) {
+    			enemyTowers[i].x = enemyTowers[i].x - 5;
+		}
 		for (i = 1; i < enemyshots.length; i++) {
 			enemyshots[i].x = enemyshots[i].x -5;
 		}

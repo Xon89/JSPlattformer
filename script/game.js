@@ -2,7 +2,6 @@ function update(){
 	inputplayer();
 	
 	startscreen();
-	
 	if(keys[13]) {
 		if(player.active) {
 			canvas.width=canvas.width;
@@ -24,11 +23,9 @@ function update(){
 			playershots = [];
 			player.x = width/2;
 			player.y = height - 5;
-			
-			for (i = 1; i < boxes.length; i++) {
-			boxes[i].x = boxes[i].x + offset;
-			}
+			restart();
 
+			
 			offset = 0;
 		}
  	}
@@ -37,6 +34,7 @@ function update(){
 }
 
 window.addEventListener("load",function(){
+	restart();
     update();
 });
 
