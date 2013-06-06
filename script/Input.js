@@ -2,6 +2,7 @@ var cosi = 0,
 	sine = 0; //needed to fix bug in startscreen
  
 function inputplayer(){
+
     if (keys[32]) {
       //JUMP
       if(!player.jumping && player.grounded){
@@ -22,12 +23,13 @@ function inputplayer(){
             player.velX--;
         }
     }
+
 }
 document.body.addEventListener("keydown", function(e) {
     keys[e.keyCode] = true;
-    if(keys[37] || keys[65])
+    if( (keys[37] || keys[65]) && keys[13])
     	drawTankmov = "left";
-    if(keys[39] || keys[68])
+    if( (keys[39] || keys[68]) && keys[13] )
     	drawTankmov = "right";
 });
 
@@ -48,18 +50,7 @@ document.body.addEventListener("keyup", function(e) {
 });
 
 canvas.addEventListener("mousedown", function(e) {
-	/*if(!stopshoot && keys[13]) {
-		if(!shot1go || !shot2go || !shot3go || !shot4go)
-			jBeep('sound/shot.wav');
-		if(shot1go && shot2go && shot3go) 
-			shot4init();
-		if(shot1go && shot2go && !shot3go)
-			shot3init();
-		if(shot1go && !shot2go)
-			shot2init();
-		if(!shot1go)
-			shot1init();
-	}*/
-	shootplayerinit();
-
+	if(keys[13]) {
+		shootplayerinit();
+	}
 }, false);

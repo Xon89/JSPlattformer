@@ -68,7 +68,7 @@ function scrolling() {
 		bg2posx = width;
 	if(bg3posx <= -width)
 		bg3posx = width;
-	if(bg4posx <- -width)
+	if(bg4posx <= -width)
 		bg4posx = width;
 }
 
