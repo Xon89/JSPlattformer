@@ -157,7 +157,7 @@ function enemyPlane(){
 		planeimg.src = "img/Planebodyflipped.png";
 		ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, 53, 33);
 		drawTurret(enemyplanes.x+40 , enemyplanes.y+16); 
-		if (timerplaneshots == 300){
+		if (timerplaneshots == 500){
 		timerplaneshots =0;
 		shootenemyinit(enemyplanes.x+40 , enemyplanes.y+16);
 		}
@@ -176,6 +176,15 @@ function drawTurret(parentx, parenty){
 		ctx.restore();
 
 }
+function enemyTower(){
+		for (var i = 0; i < enemyTowers.length; i++) {
+			var Towerimg = new Image();
+			Towerimg.src ="img/Tower1.png";
+			ctx.drawImage(Towerimg, enemyTowers.x, enemyTowers.y);
+			drawTurret(enemyTowers.x+14,enemyTowers.y+5)
+		}
+}
+
 function drawBoxes(){
 //draw boxes and Fill
 	var img = new Image();
@@ -189,6 +198,11 @@ function drawBoxes(){
 	}
 	ctx.fill();
 }
+var enemyTowers=[];
+enemyTowers.push({
+    x:400,
+    y:300,
+});
 var boxes = [];
 boxes.push({
     x: 0,
