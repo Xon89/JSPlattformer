@@ -1,4 +1,5 @@
 function restart(){
+	
 	var cosi = 0, 
 	sine = 0; //needed to fix bug in startscreen
 	enemyTowers.length=0;

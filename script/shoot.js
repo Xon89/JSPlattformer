@@ -28,7 +28,7 @@ function playershot() {
 				if (enemyplanes.active == 1){
 					var hit=colCheckHit(playershots[i], enemyplanes);
 					if (hit==1){
-									Score.points++;
+									addscore();
 					}
 				}
 				if (playershots[i].destruction == 600){

@@ -7,7 +7,7 @@ var canvas = document.getElementById("canvas"),
     height = 600,
 
     keys = [],
-
+	
     friction = 0.8,
     shotspeed = 10,
     gravity = 0.3,
@@ -17,7 +17,7 @@ var canvas = document.getElementById("canvas"),
 	bg4posx = width;
 	var boxes = [];
 	planeactive=1;
-	
+	Highscore=0;
 	scrollingpoint = 350;
     drawTankmov = "stand";
     var turret = new Segment(100,20);
@@ -29,7 +29,6 @@ var canvas = document.getElementById("canvas"),
 	canvas.height = 600;
 	var mouse = utils.captureMouse(canvas);
 	var offset = 0;
-
 function startscreen() {
 	var startimg = new Image();
 	startimg.src = "img/start.png";
@@ -52,7 +51,7 @@ function drawScore(){
 	Score.time++;
 	
 	ctx.font = "bold 12px sans-serif";
-  	ctx.fillText("Time:" +Math.round(Score.time/60)+"      Score:"+Score.points , 20, 15);
+  	ctx.fillText("Time:" +Math.round(Score.time/60)+"      Score:"+Score.points+"        Highscore:"+Highscore , 20, 15);
 }
 
 function drawPlayer(){
@@ -66,7 +65,10 @@ function drawPlayer(){
 		drawTurretPlayer();
 
 }	
-
+function addscore(){
+	Score.points++;
+}
+	
 function drawEnemy(){
 		enemyTower();
 		enemyPlane();
@@ -256,7 +258,11 @@ function update(){
 			drawScore();
 		} else {
 			keys[13] = false; 
+			if (Highscore<=Score.points){
+			Highscore=Score.points;
+			}
 			restart();
+		
 		}
  	}
  	requestAnimationFrame(update);
