@@ -4,6 +4,7 @@ function movement(){
     player.x += player.velX;
     player.y += player.velY;
 }
+
 function collision(){
 	player.grounded = false;
 
@@ -30,11 +31,7 @@ function collision(){
 	        player.jumping = false;
 	        alert('Congratulations! You won the game. You scored ' + Score.points + ' points in ' + Math.round(Score.time/60) + ' seconds.');
 	        restart();
-       	}
-	
-	
-	
-			
+       	}		
 }
 
 function scrolling() {
@@ -48,6 +45,7 @@ function scrolling() {
         player.y = height - player.height;
         player.jumping = false;
     }
+    
     if(drawTankmov == "right" && (player.x == scrollingpoint) ) {
 		bg1posx = bg1posx - 2;
 		bg2posx = bg2posx - 2;
@@ -71,7 +69,6 @@ function scrolling() {
 		offset = offset + 5;
 		
 		ctx.fill();
-
 	}
 	
 	if(bg1posx <= -width)

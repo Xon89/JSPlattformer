@@ -1,5 +1,4 @@
 function shootplayerinit(){
-		
 		jBeep('sound/shot.wav');	
 		shootangle= Math.atan2(mouse.y - turret.y, mouse.x - turret.x),
 		sine = Math.sin(shootangle) * 20;
@@ -13,9 +12,8 @@ function shootplayerinit(){
 			go : true,
 			destruction : 0,
 		})
-
-	
 }
+
 function playershot() {
 	for (var i = 0; i < playershots.length; i++) {
    			if(playershots[i].go==true) {
@@ -46,13 +44,10 @@ function playershot() {
 						}
 					}
 				}
-
-					
-			
 	 		}
  	}
-	
 }
+
 function shootenemyinit( xstart ,  ystart){
 		jBeep('sound/shot.wav');	
 		shootangle= Math.atan2(turret.y - ystart, turret.x - xstart ),
@@ -67,9 +62,8 @@ function shootenemyinit( xstart ,  ystart){
 			go : true,
 			destruction : 0,
 		})
-
-	
 }
+
 function enemyshot() {
 	for (var i = 0; i < enemyshots.length; i++) {
    			if(enemyshots[i].go==true) {
@@ -85,29 +79,24 @@ function enemyshot() {
 					enemyshots[i].go=false;
 				}	
 				if (player.active == 1){
-				colCheckHit(enemyshots[i], player);
+					colCheckHit(enemyshots[i], player);
 				}
-
 	 		}
  	}
-	
 }
+
 function colCheckHit(shapeA, shapeB) {
-    // get the vectors to check against
     var vX = (shapeA.x + (shapeA.width / 2)) - (shapeB.x + (shapeB.width / 2)),
         vY = (shapeA.y + (shapeA.height / 2)) - (shapeB.y + (shapeB.height / 2)),
-        // add the half widths and half heights of the objects
+
         hWidths = (shapeA.width / 2) + (shapeB.width / 2),
         hHeights = (shapeA.height / 2) + (shapeB.height / 2);
-     
- 
-    // if the x and y vector are less than the half width or half height, they we must be inside the object, causing a collision
+
     if (Math.abs(vX) < hWidths && Math.abs(vY) < hHeights) {         // figures out on which side we are colliding (top, bottom, left, or right)         
    				var hit=1;
                 shapeB.nodead = 0;
                 shapeB.active =0;
  				jBeep('sound/hit.wav');
  				return hit;
-    }
-    
+    }   
 }

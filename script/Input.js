@@ -1,7 +1,4 @@
-
- 
 function inputplayer(){
-
     if (keys[32]) {
       //JUMP
       if(!player.jumping && player.grounded){
@@ -22,7 +19,6 @@ function inputplayer(){
             player.velX--;
         }
     }
-
 }
 document.body.addEventListener("keydown", function(e) {
     keys[e.keyCode] = true;

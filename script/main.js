@@ -34,12 +34,9 @@ function startscreen() {
 	var startimg = new Image();
 	startimg.src = "img/start.png";
 		ctx.drawImage(startimg, 0, 0, 800, 600);
-
-
 }
 
 function background(){
-
 	var bg1img = new Image();
 	bg1img.src = "img/bg1.png";
 		ctx.drawImage(bg1img, bg3posx, 0, 801, 600);
@@ -49,17 +46,15 @@ function background(){
 	bg2img.src = "img/bg2.png";
 		ctx.drawImage(bg2img, bg1posx, 0, 801, 600);
 		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
-		
-
-	
-
 }
+
 function drawScore(){
 	Score.time++;
 	
 	ctx.font = "bold 12px sans-serif";
   	ctx.fillText("Time:" +Math.round(Score.time/60)+"      Score:"+Score.points , 20, 15);
 }
+
 function drawPlayer(){
 		if (player.shotavail==0){
 		player.shotcd--;
@@ -71,11 +66,13 @@ function drawPlayer(){
 		drawTurretPlayer();
 
 }	
+
 function drawEnemy(){
 		enemyTower();
 		enemyPlane();
 		
 }
+
 function drawTurretPlayer(){
 	turret.x = player.x + 30;
 	turret.y = player.y + 16;
@@ -124,6 +121,7 @@ function drawTankPlayer() {
 
 	}
 }
+
 function drawTurret(parentx, parenty){
 		TurX = parentx;
 		TurY = parenty;
@@ -137,6 +135,7 @@ function drawTurret(parentx, parenty){
 		ctx.restore();
 
 }
+
 function enemyPlane(){
 	if(enemyplanes.active == 1) {
 		timerplaneshots++;
@@ -181,6 +180,7 @@ function enemyPlane(){
 			}
 	}
 }
+
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
 			if (enemyTowers[i].nodead==1){
@@ -222,3 +222,54 @@ function drawBoxes(){
 	}
 	ctx.fill();
 }
+
+function disableselect(e){
+	return false;
+	}
+	function reEnable(){
+		return true;
+	}
+	document.onselectstart=new Function ("return false")
+	if (window.sidebar){
+	document.onmousedown=disableselect;
+	document.onclick=reEnable;
+}
+
+function update(){
+	inputplayer();
+	
+	startscreen();
+	if(keys[13]) {
+		if(player.nodead) {
+			canvas.width=canvas.width;
+			canvas.width=width;
+			movement();
+			
+			background();
+			drawBoxes();
+			scrolling();
+			collision();
+			drawPlayer();
+			drawEnemy();
+			playershot();
+			enemyshot();
+			drawScore();
+		} else {
+			keys[13] = false; 
+			restart();
+		}
+ 	}
+ 	requestAnimationFrame(update);
+}
+
+window.addEventListener("load",function(){
+	restart();
+    update();
+});
+
+
+
+
+
+
+
