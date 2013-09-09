@@ -16,15 +16,15 @@ var canvas = document.getElementById("canvas"),
 	bg3posx = 0;
 	bg4posx = width;
 	var boxes = [];
-	planeactive=1;
-	Highscore=0;
+
+
 	scrollingpoint = 350;
     drawTankmov = "stand";
     var turret = new Segment(100,20);
     var playershots=[];
     var enemyshots=[];
     var enemyTowers=[];
-    timerplaneshots =0;
+
     canvas.width = 800;
 	canvas.height = 600;
 	var mouse = utils.captureMouse(canvas);
@@ -47,12 +47,7 @@ function background(){
 		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
 }
 
-function drawScore(){
-	Score.time++;
-	
-	ctx.font = "bold 12px sans-serif";
-  	ctx.fillText("Time:" +Math.round(Score.time/60)+"      Score:"+Score.points+"        Highscore:"+Highscore , 20, 15);
-}
+
 
 function drawPlayer(){
 		if (player.shotavail==0){
@@ -65,13 +60,11 @@ function drawPlayer(){
 		drawTurretPlayer();
 
 }	
-function addscore(){
-	Score.points++;
-}
-	
+
+
 function drawEnemy(){
 		enemyTower();
-		enemyPlane();
+
 		
 }
 
@@ -138,50 +131,6 @@ function drawTurret(parentx, parenty){
 
 }
 
-function enemyPlane(){
-	if(enemyplanes.active == 1) {
-		timerplaneshots++;
-		
-		if(enemyplanes.mov== -1){
-			enemyplanes.x=enemyplanes.x-5;
-			if (enemyplanes.x==0){
-				enemyplanes.mov= 1;
-			}
-			var planeimg = new Image();
-			planeimg.src = "img/Planebody.png";
-			ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, enemyplanes.width, enemyplanes.height);
-			drawTurret(enemyplanes.x+13 , enemyplanes.y+16);
-		}
-		else{
-			enemyplanes.x=enemyplanes.x+5;
-					if (enemyplanes.x==800){
-				enemyplanes.mov= -1;
-			}
-			var planeimg = new Image();
-			planeimg.src = "img/Planebodyflipped.png";
-			ctx.drawImage(planeimg, enemyplanes.x, enemyplanes.y, enemyplanes.width, enemyplanes.height);
-			drawTurret(enemyplanes.x+40 , enemyplanes.y+16); 
-			if (timerplaneshots == 500){
-			timerplaneshots =0;
-			shootenemyinit(enemyplanes.x+40 , enemyplanes.y+16);
-			}
-		}
-		
-		enemyplanes.shoottimer--;
-		if(enemyplanes.shoottimer == 0) {
-			shootenemyinit(TurX,TurY);
-			enemyplanes.shoottimer = 100;
-		}
-	}
-	else {
-			enemyplanes.timer--;
-			if(enemyplanes.timer == 0) {
-				enemyplanes.active = 1;
-				enemyplanes.timer = 500;
-				enemyplanes.x = 750;
-			}
-	}
-}
 
 function enemyTower(){
 		for (var i = 0; i < enemyTowers.length; i++) {
@@ -255,12 +204,11 @@ function update(){
 			drawEnemy();
 			playershot();
 			enemyshot();
-			drawScore();
+
+
 		} else {
 			keys[13] = false; 
-			if (Highscore<=Score.points){
-			Highscore=Score.points;
-			}
+
 			restart();
 		
 		}

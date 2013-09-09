@@ -8,7 +8,7 @@ function movement(){
 function collision(){
 	player.grounded = false;
 
-	for (var i = 0; i < boxes.length-2; i++) {
+	for (var i = 0; i < boxes.length; i++) {
 	     var dir = colCheckBoxes(player, boxes[i]);
 	        
 	    if (dir === "l" || dir === "r") {
@@ -24,15 +24,9 @@ function collision(){
       		player.velY = 0;
     	}	
 	}
-	
-	dir = colCheckBoxes(player, boxes[boxes.length-2]);
-	if (dir === "l" || dir === "r") {
-	        player.velX = 0;
-	        player.jumping = false;
-	        alert('Congratulations! You won the game. You scored ' + Score.points + ' points in ' + Math.round(Score.time/60) + ' seconds.');
-	        restart();
-       	}		
+		
 }
+
 
 function scrolling() {
 	if (player.x<0) {

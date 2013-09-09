@@ -25,12 +25,6 @@ function playershot() {
 			 	shotimg.src = "img/shot.png";
 				ctx.drawImage(shotimg, playershots[i].x, playershots[i].y, playershots[i].width, playershots[i].height);
 				playershots[i].destruction++;
-				if (enemyplanes.active == 1){
-					var hit=colCheckHit(playershots[i], enemyplanes);
-					if (hit==1){
-									addscore();
-					}
-				}
 				if (playershots[i].destruction == 600){
 					playershots[i].go=false;
 				}	
@@ -38,9 +32,7 @@ function playershot() {
 					if (enemyTowers[j].nodead ==1){
 						if (enemyTowers[j].active ==1){
 								var hit=colCheckHit(playershots[i], enemyTowers[j]);
-								if (hit==1){
-									Score.points++;
-								}
+
 						}
 					}
 				}
