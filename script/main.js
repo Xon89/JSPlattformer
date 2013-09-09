@@ -12,7 +12,6 @@ var canvas = document.getElementById("canvas"),
 	bg4posx = width;
 	var boxes = [];
 	scrollingpoint = 350;
-
     var turret = new Segment(100,20);
     var playershots=[];
     var Enemieshots=[];
@@ -22,11 +21,12 @@ var canvas = document.getElementById("canvas"),
 	canvas.height = 600;
 	var mouse = utils.captureMouse(canvas);
 	var offset = 0;
-function startscreen() {
+	//Here comes the preloader instead of startscreen
+	function startscreen() {
 	var startimg = new Image();
 	startimg.src = "img/start.png";
 		ctx.drawImage(startimg, 0, 0, 800, 600);
-}
+	}
 
 function disableselect(e){
 	return false;

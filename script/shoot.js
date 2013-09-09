@@ -64,6 +64,7 @@ function shootenemyinit( xstart ,  ystart, speed){
 			go : true,
 			destruction : 0,
 			shotspeed: speed,
+
 		})
 }
 

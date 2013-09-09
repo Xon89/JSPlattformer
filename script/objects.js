@@ -7,7 +7,7 @@ function restart(){
 	boxes.length=0;
 	Enemieshots.length=0;
 	playershots.length=0;
-
+	
 	    player = {
 	      x : width/2,
 	      y : height - 5,
@@ -38,6 +38,7 @@ function restart(){
 			nodead: 1,
 			picturesource: "img/Tower1.png",
 			Turret: true,
+			Turretpictursesource:"img/Turret2.png",
 			shotspeed: 10,
 	});
 	

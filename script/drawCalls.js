@@ -96,6 +96,7 @@ function drawEnemy(){
 							if(Enemies[i].shoottimer == 0) {
 								shootenemyinit(Enemies[i].x+14,Enemies[i].y+5, Enemies[i].shotspeed);
 								Enemies[i].shoottimer = 100;
+
 							}
 						}	
 				}
