@@ -42,19 +42,7 @@ function restart(){
 			shotspeed: 10,
 	});
 	
-function Segment (width, height, color) {
-  this.x = 0;
-  this.y = 0;
-  this.width = width;
-  this.height = height;
-  this.vx = 0;
-  this.vy = 0;
-  this.rotation = 0;
-  this.scaleX = 1;
-  this.scaleY = 1;
-  this.color = (color === undefined) ? "#ffffff" : utils.parseColor(color);
-  this.lineWidth = 1;
-}
+
 	
 	boxes.push({
 	    x: 0,
