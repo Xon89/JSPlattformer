@@ -49,16 +49,16 @@ function scrolling() {
 		for (var i = 1; i < boxes.length; i++) {
     			boxes[i].x = boxes[i].x - 5;
 		}
-		for (var i = 0; i < Enemys.length; i++) {
-				if (Enemys[i].nodead==1){
-    				Enemys[i].x = Enemys[i].x - 5;
-    				if (Enemys[i].x<=-5){
-    					Enemys[i].nodead=0;
+		for (var i = 0; i < Enemies.length; i++) {
+				if (Enemies[i].nodead==1){
+    				Enemies[i].x = Enemies[i].x - 5;
+    				if (Enemies[i].x<=-5){
+    					Enemies[i].nodead=0;
     				}
     			}
 		}
-		for (i = 0; i < enemyshots.length; i++) {
-			enemyshots[i].x = enemyshots[i].x -5;
+		for (i = 0; i < Enemieshots.length; i++) {
+			Enemieshots[i].x = Enemieshots[i].x -5;
 		}
 		
 		offset = offset + 5;

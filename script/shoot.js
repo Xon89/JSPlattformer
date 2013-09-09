@@ -38,10 +38,10 @@ function playershot() {
 				if (playershots[i].destruction == 600){
 					playershots[i].go=false;
 				}	
-				for (var j = 0; j < Enemys.length; j++){
-					if (Enemys[j].nodead ==1){
-						if (Enemys[j].active ==1){
-								var hit=colCheckHit(playershots[i], Enemys[j]);
+				for (var j = 0; j < Enemies.length; j++){
+					if (Enemies[j].nodead ==1){
+						if (Enemies[j].active ==1){
+								var hit=colCheckHit(playershots[i], Enemies[j]);
 
 						}
 					}
@@ -55,7 +55,7 @@ function shootenemyinit( xstart ,  ystart, speed){
 		shootangle= Math.atan2(turret.y - ystart, turret.x - xstart ),
 		sine = Math.sin(shootangle) * 20;
 		cosi = Math.cos(shootangle) * 20;
-		enemyshots.push({
+		Enemieshots.push({
 			x : (xstart-4) + cosi,
 			y : (ystart-4) + sine,
 			width : 8,
@@ -67,22 +67,22 @@ function shootenemyinit( xstart ,  ystart, speed){
 		})
 }
 
-function enemyshot() {
-	for (var i = 0; i < enemyshots.length; i++) {
-   			if(enemyshots[i].go==true) {
-	    		shotmovx = Math.cos(enemyshots[i].angle) * enemyshots[i].shotspeed;
-	    		shotmovy = Math.sin(enemyshots[i].angle) * enemyshots[i].shotspeed;
-		 		enemyshots[i].x += shotmovx;
-		   		enemyshots[i].y += shotmovy;
+function Enemiesshot() {
+	for (var i = 0; i < Enemieshots.length; i++) {
+   			if(Enemieshots[i].go==true) {
+	    		shotmovx = Math.cos(Enemieshots[i].angle) * Enemieshots[i].shotspeed;
+	    		shotmovy = Math.sin(Enemieshots[i].angle) * Enemieshots[i].shotspeed;
+		 		Enemieshots[i].x += shotmovx;
+		   		Enemieshots[i].y += shotmovy;
  			    var shotimg = new Image();
 			 	shotimg.src = "img/enemyshot.png";
-				ctx.drawImage(shotimg, enemyshots[i].x, enemyshots[i].y, enemyshots[i].width, enemyshots[i].height);
-				enemyshots[i].destruction++;
-				if (enemyshots[i].destruction == 600){
-					enemyshots[i].go=false;
+				ctx.drawImage(shotimg, Enemieshots[i].x, Enemieshots[i].y, Enemieshots[i].width, Enemieshots[i].height);
+				Enemieshots[i].destruction++;
+				if (Enemieshots[i].destruction == 600){
+					Enemieshots[i].go=false;
 				}	
 				if (player.active == 1){
-					colCheckHit(enemyshots[i], player);
+					colCheckHit(Enemieshots[i], player);
 				}
 	 		}
  	}

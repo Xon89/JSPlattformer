@@ -80,22 +80,22 @@ function drawTurretPlayer(){
 	ctx.restore();
 }
 function drawEnemy(){
-		for (var i = 0; i < Enemys.length; i++) {
-			if (Enemys[i].nodead==1){
-				if (Enemys[i].x<=800){
-					Enemys[i].active=1;
+		for (var i = 0; i < Enemies.length; i++) {
+			if (Enemies[i].nodead==1){
+				if (Enemies[i].x<=800){
+					Enemies[i].active=1;
 				}
-				if(Enemys[i].active == 1) {	
+				if(Enemies[i].active == 1) {	
 					var Enemyimg = new Image();
-					Enemyimg.src =Enemys[i].picturesource;
+					Enemyimg.src =Enemies[i].picturesource;
 
-					ctx.drawImage	(Enemyimg, Enemys[i].x, Enemys[i].y);
-						if (Enemys[i].Turret==true){
-							drawTurretEnemy(Enemys[i].x+10,Enemys[i].y+9)
-							Enemys[i].shoottimer--;
-							if(Enemys[i].shoottimer == 0) {
-								shootenemyinit(Enemys[i].x+14,Enemys[i].y+5, Enemys[i].shotspeed);
-								Enemys[i].shoottimer = 100;
+					ctx.drawImage	(Enemyimg, Enemies[i].x, Enemies[i].y);
+						if (Enemies[i].Turret==true){
+							drawTurretEnemy(Enemies[i].x+10,Enemies[i].y+9)
+							Enemies[i].shoottimer--;
+							if(Enemies[i].shoottimer == 0) {
+								shootenemyinit(Enemies[i].x+14,Enemies[i].y+5, Enemies[i].shotspeed);
+								Enemies[i].shoottimer = 100;
 							}
 						}	
 				}

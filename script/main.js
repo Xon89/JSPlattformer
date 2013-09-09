@@ -15,8 +15,8 @@ var canvas = document.getElementById("canvas"),
 
     var turret = new Segment(100,20);
     var playershots=[];
-    var enemyshots=[];
-    var Enemys=[];
+    var Enemieshots=[];
+    var Enemies=[];
 
     canvas.width = 800;
 	canvas.height = 600;
@@ -58,7 +58,7 @@ function update(){
 			drawEnemy();
 			cooldown();
 			playershot();
-			enemyshot();
+			Enemiesshot();
 		} else {
 			keys[13] = false; 
 			restart();

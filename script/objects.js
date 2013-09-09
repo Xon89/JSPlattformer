@@ -3,9 +3,9 @@ function restart(){
 	drawTankmov = "stand";
 	var cosi = 0, 
 	sine = 0; //needed to fix bug in startscreen
-	Enemys.length=0;
+	Enemies.length=0;
 	boxes.length=0;
-	enemyshots.length=0;
+	Enemieshots.length=0;
 	playershots.length=0;
 
 	    player = {
@@ -26,8 +26,8 @@ function restart(){
 	      friction: 0.8,
     	  gravity: 0.3,
 	    }
-	Enemys.push({
-		//pushes a turret
+	Enemies.push({
+		//pushes a tower
 	  		x: 1000,//needs to be vartiable from levels
 			y: 450,//needs to be vartiable from levels
 			width: 20,
