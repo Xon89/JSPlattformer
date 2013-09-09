@@ -1,3 +1,12 @@
+function cooldown(){
+	if (player.shotavail==0){
+		player.shotcd--;
+			if (player.shotcd==0){
+				player.shotavail=1;
+		}
+	}
+}
+
 function shootplayerinit(){
 		jBeep('sound/shot.wav');	
 		shootangle= Math.atan2(mouse.y - turret.y, mouse.x - turret.x),
@@ -10,6 +19,7 @@ function shootplayerinit(){
 			height: 8,
 			angle : shootangle,
 			go : true,
+			shotspeed: player.shotspeed,
 			destruction : 0,
 		})
 }
@@ -17,8 +27,8 @@ function shootplayerinit(){
 function playershot() {
 	for (var i = 0; i < playershots.length; i++) {
    			if(playershots[i].go==true) {
-	    		shotmovx = Math.cos(playershots[i].angle) * shotspeed;
-	    		shotmovy = Math.sin(playershots[i].angle) * shotspeed;
+	    		shotmovx = Math.cos(playershots[i].angle) * playershots[i].shotspeed;
+	    		shotmovy = Math.sin(playershots[i].angle) * playershots[i].shotspeed;
 		 		playershots[i].x += shotmovx;
 		   		playershots[i].y += shotmovy;
  			    var shotimg = new Image();
@@ -28,10 +38,10 @@ function playershot() {
 				if (playershots[i].destruction == 600){
 					playershots[i].go=false;
 				}	
-				for (var j = 0; j < enemyTowers.length; j++){
-					if (enemyTowers[j].nodead ==1){
-						if (enemyTowers[j].active ==1){
-								var hit=colCheckHit(playershots[i], enemyTowers[j]);
+				for (var j = 0; j < Enemys.length; j++){
+					if (Enemys[j].nodead ==1){
+						if (Enemys[j].active ==1){
+								var hit=colCheckHit(playershots[i], Enemys[j]);
 
 						}
 					}
@@ -40,7 +50,7 @@ function playershot() {
  	}
 }
 
-function shootenemyinit( xstart ,  ystart){
+function shootenemyinit( xstart ,  ystart, speed){
 		jBeep('sound/shot.wav');	
 		shootangle= Math.atan2(turret.y - ystart, turret.x - xstart ),
 		sine = Math.sin(shootangle) * 20;
@@ -53,14 +63,15 @@ function shootenemyinit( xstart ,  ystart){
 			angle : shootangle,
 			go : true,
 			destruction : 0,
+			shotspeed: speed,
 		})
 }
 
 function enemyshot() {
 	for (var i = 0; i < enemyshots.length; i++) {
    			if(enemyshots[i].go==true) {
-	    		shotmovx = Math.cos(enemyshots[i].angle) * shotspeed;
-	    		shotmovy = Math.sin(enemyshots[i].angle) * shotspeed;
+	    		shotmovx = Math.cos(enemyshots[i].angle) * enemyshots[i].shotspeed;
+	    		shotmovy = Math.sin(enemyshots[i].angle) * enemyshots[i].shotspeed;
 		 		enemyshots[i].x += shotmovx;
 		   		enemyshots[i].y += shotmovy;
  			    var shotimg = new Image();

@@ -1,11 +1,15 @@
+// ONLY want the definition of objects in here
+
+
 function restart(){
-	
+	drawTankmov = "stand";
 	var cosi = 0, 
 	sine = 0; //needed to fix bug in startscreen
-	enemyTowers.length=0;
+	Enemys.length=0;
 	boxes.length=0;
 	enemyshots.length=0;
 	playershots.length=0;
+
 	    player = {
 	      x : width/2,
 	      y : height - 5,
@@ -19,20 +23,24 @@ function restart(){
 	      active: true,
 	      jumping: false,
 	      shotcd: 50,
+	      shotspeed: 10,
 	      shotavail: 1,
+	      friction: 0.8,
+    	  gravity: 0.3,
 	    }
-	    
-
-	
-	enemyTowers.push({
-	  		x: 1000,
-			y: 450,
+	Enemys.push({
+		//pushes a turret
+	  		x: 1000,//needs to be vartiable from levels
+			y: 450,//needs to be vartiable from levels
 			width: 20,
 			height: 60,
 			active : 0,
 			timer : 80,
 			shoottimer : 100,
 			nodead: 1,
+			picturesource: "img/Tower1.png",
+			Turret: true,
+			shotspeed: 10,
 	});
 	
 

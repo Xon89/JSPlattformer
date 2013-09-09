@@ -1,6 +1,6 @@
 function movement(){
-    player.velX *= friction;
-    player.velY += gravity;
+    player.velX *= player.friction;
+    player.velY += player.gravity;
     player.x += player.velX;
     player.y += player.velY;
 }
@@ -19,6 +19,7 @@ function collision(){
 	        player.jumping = false;
        	} else if (dir === "t")
            	player.velY *= -1;
+           
      
 		if(player.grounded){
       		player.velY = 0;
@@ -48,11 +49,11 @@ function scrolling() {
 		for (var i = 1; i < boxes.length; i++) {
     			boxes[i].x = boxes[i].x - 5;
 		}
-		for (var i = 0; i < enemyTowers.length; i++) {
-				if (enemyTowers[i].nodead==1){
-    				enemyTowers[i].x = enemyTowers[i].x - 5;
-    				if (enemyTowers[i].x<=-5){
-    					enemyTowers[i].nodead=0;
+		for (var i = 0; i < Enemys.length; i++) {
+				if (Enemys[i].nodead==1){
+    				Enemys[i].x = Enemys[i].x - 5;
+    				if (Enemys[i].x<=-5){
+    					Enemys[i].nodead=0;
     				}
     			}
 		}

@@ -5,25 +5,18 @@ var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
     width = 800,
     height = 600,
-
     keys = [],
-	
-    friction = 0.8,
-    shotspeed = 10,
-    gravity = 0.3,
 	bg1posx = 0,
 	bg2posx = width;
 	bg3posx = 0;
 	bg4posx = width;
 	var boxes = [];
-
-
 	scrollingpoint = 350;
-    drawTankmov = "stand";
+
     var turret = new Segment(100,20);
     var playershots=[];
     var enemyshots=[];
-    var enemyTowers=[];
+    var Enemys=[];
 
     canvas.width = 800;
 	canvas.height = 600;
@@ -33,145 +26,6 @@ function startscreen() {
 	var startimg = new Image();
 	startimg.src = "img/start.png";
 		ctx.drawImage(startimg, 0, 0, 800, 600);
-}
-
-function background(){
-	var bg1img = new Image();
-	bg1img.src = "img/bg1.png";
-		ctx.drawImage(bg1img, bg3posx, 0, 801, 600);
-		ctx.drawImage(bg1img, bg4posx, 0, 801, 600);
-		
-	var bg2img = new Image();
-	bg2img.src = "img/bg2.png";
-		ctx.drawImage(bg2img, bg1posx, 0, 801, 600);
-		ctx.drawImage(bg2img, bg2posx, 0, 801, 600);
-}
-
-
-
-function drawPlayer(){
-		if (player.shotavail==0){
-		player.shotcd--;
-			if (player.shotcd==0){
-				player.shotavail=1;
-			}
-		}
-		drawTankPlayer();
-		drawTurretPlayer();
-
-}	
-
-
-function drawEnemy(){
-		enemyTower();
-
-		
-}
-
-function drawTurretPlayer(){
-	turret.x = player.x + 30;
-	turret.y = player.y + 16;
-	turret.rotation = Math.atan2 (mouse.y - turret.y, mouse.x - turret.x);
-	var turretimg = new Image();
-	turretimg.src ="img/Turret1.png";
-	ctx.save();
-    ctx.translate(turret.x,turret.y);
-    ctx.rotate(turret.rotation);
-    ctx.drawImage(turretimg,-8, -8,37,16);
-	ctx.restore();
-}
-
-function drawTankPlayer() {
-	if( (drawTankmov == "stand") && !player.jumping) {
-		var tankstandimg = new Image();
-		tankstandimg.src = "img/Tankbody.png";
-			ctx.drawImage(tankstandimg, player.x, player.y, player.width, player.height);
-	
-
-	} else if( (drawTankmov == "left") && !player.jumping) {
-		var tankleftimg = new Image();
-		tankleftimg.src = "img/Tankleft.png";
-			ctx.drawImage(tankleftimg, player.x, player.y, player.width, player.height);
-
-	} else if( (drawTankmov == "right") && !player.jumping) {
-		var tankrightimg = new Image();
-		tankrightimg.src = "img/Tankright.png";
-			ctx.drawImage(tankrightimg, player.x, player.y, player.width, player.height);
-
-	} else if( (drawTankmov == "stand") && player.jumping){
-		var tankupimg = new Image();
-		tankupimg.src = "img/Tankup.png";
-			ctx.drawImage(tankupimg, player.x, player.y, player.width, player.height);
-
-	} else if( (drawTankmov == "left") && player.jumping){
-		var tankupleftimg = new Image();
-		tankupleftimg.src = "img/Tankupleft.png";
-			ctx.drawImage(tankupleftimg, player.x, player.y, player.width, player.height);
-
-	} else if( (drawTankmov == "right") && player.jumping){
-		var tankuprightimg = new Image();
-		tankuprightimg.src = "img/Tankupright.png";
-			ctx.drawImage(tankuprightimg, player.x, player.y, player.width, player.height);
-
-
-	}
-}
-
-function drawTurret(parentx, parenty){
-		TurX = parentx;
-		TurY = parenty;
-		TurRot = Math.atan2 (turret.y - TurY, turret.x - TurX);
-		var TurImg = new Image();
-		TurImg.src ="img/Turret2.png";
-		ctx.save();
-		ctx.translate(TurX,TurY);
-		ctx.rotate(TurRot);
-		ctx.drawImage(TurImg,-8, -8,37,16);
-		ctx.restore();
-
-}
-
-
-function enemyTower(){
-		for (var i = 0; i < enemyTowers.length; i++) {
-			if (enemyTowers[i].nodead==1){
-				if (enemyTowers[i].x<=800){
-					enemyTowers[i].active=1;
-				}
-				if(enemyTowers[i].active == 1) {	
-					var Towerimg = new Image();
-					if (enemyTowers[i].timer < 40){
-					Towerimg.src ="img/Tower1.png";
-					enemyTowers[i].timer--;
-					}
-					else{
-						Towerimg.src="img/Tower2.png"
-						enemyTowers[i].timer=80;
-					}
-					ctx.drawImage	(Towerimg, enemyTowers[i].x, enemyTowers[i].y);
-					drawTurret(enemyTowers[i].x+10,enemyTowers[i].y+9)
-					enemyTowers[i].shoottimer--;
-					if(enemyTowers[i].shoottimer == 0) {
-						shootenemyinit(enemyTowers[i].x+14,enemyTowers[i].y+5);
-						enemyTowers[i].shoottimer = 100;
-					}
-				}
-			}
-		}
-}
-
-function drawBoxes(){
-//draw boxes and Fill
-	var img = new Image();
-	img.src="img/box.png";
-	var pat=ctx.createPattern(img,"repeat");
-	ctx.fillStyle=pat;
-	ctx.beginPath();
-	
-	for (var i = 0; i < boxes.length; i++) {
-    ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
-	}
-	ctx.fill();
 }
 
 function disableselect(e){
@@ -195,22 +49,19 @@ function update(){
 			canvas.width=canvas.width;
 			canvas.width=width;
 			movement();
-			
+
 			background();
 			drawBoxes();
 			scrolling();
 			collision();
 			drawPlayer();
 			drawEnemy();
+			cooldown();
 			playershot();
 			enemyshot();
-
-
 		} else {
 			keys[13] = false; 
-
 			restart();
-		
 		}
  	}
  	requestAnimationFrame(update);
