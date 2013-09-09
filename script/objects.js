@@ -1,6 +1,4 @@
 // ONLY want the definition of objects in here
-
-
 function restart(){
 	drawTankmov = "stand";
 	var cosi = 0, 
