@@ -46,9 +46,9 @@ document.body.addEventListener("keyup", function(e) {
 
 canvas.addEventListener("mousedown", function(e) {
 	if(keys[13]) {
-		if (player.shotavail==1){
+		if (player.shot1avail==1){
 			player.shotcd= 20;
-			player.shotavail=0;
+			player.shot1avail=0;
 			shootplayerinit();
 		}
 	}

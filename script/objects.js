@@ -22,7 +22,7 @@ function restart(){
 	      jumping: false,
 	      shotcd: 50,
 	      shotspeed: 10,
-	      shotavail: 1,
+	      shot1avail: 1,
 	      friction: 0.8,
     	  gravity: 0.3,
 	    }
@@ -41,31 +41,11 @@ function restart(){
 			Turretpictursesource:"img/Turret2.png",
 			shotspeed: 10,
 	});
-	
-
-	
 	boxes.push({
 	    x: 0,
 	    y: height - 2,
 	    width: width,
 	    height: 50
 	});
-	
-	boxes.push({
-	    x: 600,
-	    y: 560,
-	    width: 400,
-	    height: 40
-	});
-	
-	boxes.push({
-	    x: 755,
-	    y: 530,
-	    width: 80,
-	    height: 40
-	});
-	
-
-	
-
 }
+

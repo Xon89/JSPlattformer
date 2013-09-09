@@ -1,8 +1,8 @@
 function cooldown(){
-	if (player.shotavail==0){
+	if (player.shot1avail==0){
 		player.shotcd--;
 			if (player.shotcd==0){
-				player.shotavail=1;
+				player.shot1avail=1;
 		}
 	}
 }
@@ -100,6 +100,7 @@ function colCheckHit(shapeA, shapeB) {
    				var hit=1;
                 shapeB.nodead = 0;
                 shapeB.active =0;
+                shapeA.go=0;
  				jBeep('sound/hit.wav');
  				return hit;
     }   
